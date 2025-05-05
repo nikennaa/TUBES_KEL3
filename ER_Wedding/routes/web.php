@@ -9,6 +9,10 @@ use App\Http\Controllers\UpdateProductController;
 Route::get('/product', [ProductController::class, 'index'])->name('products.index');
 Route::match(['get', 'post'], '/login', [LoginController::class, 'index'])->name('login');
 
+// Landing page
+Route::get('/', function () {
+    return view('landing');
+});
 
 // Tampilkan halaman register
 Route::get('/regist', [RegistController::class, 'index'])->name('regist');
