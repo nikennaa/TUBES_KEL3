@@ -6,50 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .carousel-item img {
-            width: 100%;
-            height: 350px; /* Ukuran tinggi dikurangi */
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .category-btn {
-            margin: 5px;
-            border-radius: 20px;
-        }
-
-        .btn-pink {
-            background-color: #e83e8c;
-            color: white;
-            border: none;
-        }
-
-        .btn-pink:hover {
-            background-color: #d63384;
-            color: white;
-        }
-
-        .btn-outline-pink {
-            background-color: transparent;
-            color: #e83e8c;
-            border: 2px solid #e83e8c;
-        }
-
-        .btn-outline-pink:hover {
-            background-color: #e83e8c;
-            color: white;
-        }
-
-
-        footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            background-color: #f8f9fa;
-            text-align: center;
-            color: #888;
-        }
-    </style>
+    <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
 </head>
 <body>
 
