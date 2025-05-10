@@ -588,3 +588,281 @@ section{
    }
 
 }
+
+/*tambahan baru untuk booking*/
+
+/* Form Layout - Membuat jarak antara elemen form dan memberikan padding */
+.form-group {
+   margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+   width: 100%;
+   padding: 12px;
+   font-size: 16px;
+   border-radius: 5px;
+   border: 1px solid #ddd;
+   box-sizing: border-box;
+   margin-top: 8px; /* Memberikan jarak antara label dan input */
+}
+
+.form-group textarea {
+   resize: vertical; /* Agar ukuran textarea bisa diubah secara vertikal */
+}
+
+/* Button Styling - Membuat tombol lebih rapi */
+input[type="submit"] {
+   width: 100%;
+   padding: 15px;
+   font-size: 16px;
+   background-color: var(--pink);
+   color: var(--white);
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+   background-color: var(--red);
+}
+
+/* Tabel Styling - Membuat tampilan tabel daftar booking lebih rapi */
+.booking-list table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 30px;
+}
+
+.booking-list table th,
+.booking-list table td {
+   padding: 12px;
+   text-align: left;
+   border: 1px solid #ddd;
+}
+
+.booking-list table th {
+   background-color: var(--light-bg);
+}
+
+.booking-list table td {
+   background-color: var(--white);
+}
+
+/* Button Styling for Table */
+.booking-list .btn {
+   padding: 8px 15px;
+   background-color: var(--pink);
+   color: white;
+   text-decoration: none;
+   border-radius: 4px;
+   transition: background-color 0.3s ease;
+}
+
+.booking-list .btn:hover {
+   background-color: var(--red);
+}
+
+/* Form Layout untuk Dua Kolom */
+.form-row {
+   display: flex;
+   flex-wrap: wrap;  /* Pastikan elemen input bisa turun di perangkat kecil */
+   gap: 20px; /* Jarak antar kolom */
+}
+
+.form-group {
+   width: 48%; /* Setiap kolom mendapat lebar 48% */
+   margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+   width: 100%;
+   padding: 12px;
+   font-size: 16px;
+   border-radius: 5px;
+   border: 1px solid #ddd;
+   box-sizing: border-box;
+}
+
+/* Agar dua kolom tidak tumpah pada perangkat kecil */
+@media (max-width: 768px) {
+   .form-row {
+       flex-direction: column; /* Kolom akan menumpuk pada perangkat kecil */
+   }
+
+   .form-group {
+       width: 100%; /* Membuat kolom full-width */
+   }
+}
+
+/*booking list*/
+/* Styling umum untuk tabel */
+.table-container {
+   margin-top: 2rem;
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 1rem;
+   background-color: var(--white);
+   box-shadow: var(--box-shadow);
+   border-radius: 8px;
+   overflow-x: auto;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+table th, table td {
+   padding: 1rem;
+   text-align: center;
+   border: 1px solid var(--light-white);
+}
+
+table th {
+   background-color: var(--pink);
+   color: var(--black);
+   font-size: 1.6rem;
+}
+
+table td {
+   font-size: 1.4rem;
+   color: var(--black); /* Ubah warna teks menjadi hitam */
+}
+
+table tr:nth-child(even) {
+   background-color: var(--light-bg);
+}
+
+table tr:hover {
+   background-color: var(--light-white);
+}
+
+/* Tombol */
+.btn {
+   display: inline-block;
+   padding: 0.8rem 2rem;
+   margin-top: 0.5rem;
+   text-align: center;
+   border-radius: 8px;
+   text-decoration: none;
+   font-size: 1.6rem;
+   cursor: pointer;
+   color: var(--white);
+   background-color: var(--pink);
+   transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+   background-color: var(--black);
+}
+
+/* Tombol khusus */
+.add-new-btn {
+   background-color: var(--orange);
+   font-size: 1.8rem;
+   margin-bottom: 1rem;
+}
+
+.add-new-btn:hover {
+   background-color: var(--black);
+}
+
+.edit-btn {
+   background-color: var(--orange);
+}
+
+.edit-btn:hover {
+   background-color: var(--black);
+}
+
+.delete-btn {
+   background-color: var(--red);
+}
+
+.delete-btn:hover {
+   background-color: var(--black);
+}
+
+/* Booking List Container - untuk menata judul, tombol dan tabel */
+.booking-list {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 1rem;
+   border-radius: 8px;
+   margin-top: 2rem; /* Memberikan jarak dari atas halaman */
+}
+
+/* Styling untuk judul dan tombol */
+.booking-list h3 {
+   font-size: 2.5rem;
+   color: var(--black);
+   text-align: left; /* Menyusun judul di sebelah kiri */
+   margin-bottom: 1.5rem; /* Memberikan jarak antara judul dan tombol */
+}
+
+/* Styling untuk judul dan tombol pada Create dan Edit Wedding Booking */
+.wedding-booking-form h3 {
+   font-size: 2.5rem;
+   color: var(--black);
+   text-align: left; /* Menyusun judul di sebelah kiri */
+   margin-bottom: 1.5rem; /* Memberikan jarak antara judul dan tombol */
+}
+
+.wedding-booking-form .btn {
+   display: inline-block;
+   padding: 1rem 3rem;
+   font-size: 1.8rem;
+   color: var(--white);
+   background-color: var(--pink);
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   text-transform: capitalize;
+   margin-top: 1.5rem; /* Memberikan jarak antara form dan tombol */
+   transition: background-color 0.3s ease;
+}
+
+.wedding-booking-form .btn:hover {
+   background-color: var(--black); /* Warna tombol saat hover */
+}
+
+
+/* Menata tombol Add New Booking */
+.add-new-btn {
+   display: inline-block;
+   padding: 12px 30px;
+   background-color: var(--pink);
+   color: var(--white);
+   font-size: 1.8rem;
+   text-decoration: none;
+   text-align: center;
+   border-radius: 8px;
+   transition: background-color 0.3s ease;
+   margin-bottom: 2rem; /* Memberikan jarak antara tombol dan tabel */
+}
+
+/* Tombol Add New Booking saat hover */
+.add-new-btn:hover {
+   background-color: var(--black);
+}
+
+/* Styling untuk label */
+form label {
+   font-size: 1.5rem;  /* Menambah ukuran font pada label */
+   color: var(--black);  /* Mengubah warna teks menjadi hitam */
+   display: block;  /* Menjadikan label sebagai blok untuk pengaturan tata letak */
+}
+
+/* Styling untuk form wrapper dengan latar belakang */
+.form-wrapper {
+   background-color:  #ffe9ec; /* Latar belakang putih di belakang form */
+   padding: 2rem; /* Padding agar ada jarak di sekitar form */
+   border-radius: 0.5rem; /* Membuat sudut lebih bulat */
+   box-shadow: var(--box-shadow); /* Menambahkan bayangan untuk efek depth */
+   margin-top: 2rem; /* Memberikan jarak atas antara elemen sebelumnya */
+}

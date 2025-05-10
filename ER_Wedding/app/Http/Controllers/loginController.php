@@ -24,7 +24,8 @@ class LoginController extends Controller
                 Session::put('user_email', $user->email);
                 Session::put('user_id', $user->id);
 
-                return redirect('product'); // Langsung ke home
+                // Arahkan ke halaman booking setelah login
+                return redirect('wedding/bookings'); 
             } else {
                 return back()->withErrors(['message' => 'Email atau password salah']);
             }
