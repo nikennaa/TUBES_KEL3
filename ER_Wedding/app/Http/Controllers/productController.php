@@ -3,82 +3,113 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
+use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Comment;
+
 
 class ProductController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        // Cek kalau belum login
-        if (!Session::has('user_id')) {
-            return redirect()->route('login');
-        }
-
-        $products = DB::table('products')->get();
-        return view('product', compact('products'));
+        $products = Product::latest()->get();
+        return view('admin.index', compact('products'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('admin.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'nama_produk' => 'required|string|max:255',
-                'detail' => 'required|string',
-                'price' => 'required|numeric',
-                'image' => 'required|image|max:2048',
-            ]);
+        $validated = $request->validate([
+            'name'        => 'required|string|max:255',
+            'description' => 'required|string',
+            'price'       => 'required|numeric',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
 
-            $imagePath = $request->file('image')->store('uploaded_img', 'public');
-
-            DB::table('products')->insert([
-                'nama_produk' => $request->nama_produk,
-                'detail' => $request->detail,
-                'price' => $request->price,
-                'image' => basename($imagePath),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-
-            return redirect()->back()->with('success', 'Product added successfully!');
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => $e->getMessage()]);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
         }
+
+        Product::create([
+            'name' => $validated['name'],
+            'description'      => $validated['description'],
+            'price'       => $validated['price'],
+            'image'       => isset($imagePath) ? basename($imagePath) : null,
+        ]);
+
+        session()->flash('success', 'Produk berhasil dibuat!');
+        return redirect()->route('admin.index');
+    }
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $product = Product::with('comments.user')->findOrFail($id);
+        return view('products.show', compact('product'));
     }
 
-    public function destroy($id_product)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Product $product)
     {
-        // Cek kalau belum login
-        if (!Session::has('user_id')) {
-            return redirect()->route('login');
-        }
+        return view('admin.edit', compact('product'));
+    }
 
-        $product = DB::table('products')->where('id_product', $id_product)->first();
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
 
-        if ($product) {
+        $productData = $request->only('name', 'description', 'price', 'image');
+
+        if ($request->hasFile('image')) {
             if ($product->image) {
-                Storage::disk('public')->delete('uploaded_img/' . $product->image);
+                Storage::delete('public/' . $product->image);
             }
 
-            DB::table('products')->where('id_product', $id_product)->delete();
-
-            return redirect()->back()->with('success', 'Product deleted successfully!');
+            $imagePath = $request->file('image')->store('products', 'public');
+            $productData['image'] = $imagePath;
         }
 
-        return redirect()->back()->withErrors('Product not found.');
+        $product->update($productData);
+
+        session()->flash('success', 'Produk berhasil diperbarui!');
+
+        return redirect()->route('admin.index');
     }
 
-    public function edit($id_product)
-{
-    $product = DB::table('products')->where('id_product', $id_product)->first();
-
-    if (!$product) {
-        return redirect()->back()->withErrors('Product not found.');
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Product $product)
+    {
+        if ($product->image) {
+            Storage::delete('public/' . $product->image);
+        }
+        $product->delete();
+        session()->flash('success', 'Produk berhasil dihapus!');
+        return redirect()->route('admin.index');
     }
-
-    return view('updateProduct', compact('product'));
-}
-
-
 }

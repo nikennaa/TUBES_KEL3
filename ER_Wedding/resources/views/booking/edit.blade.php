@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('title', 'Edit Wedding Booking')
 
@@ -13,7 +13,7 @@
     <form action="{{ route('wedding.update', $booking->id) }}" method="POST"> <!-- Ubah action ke update -->
         @csrf
         @method('PUT') <!-- Menambahkan metode PUT untuk memperbarui data -->
-        
+
         <h3>Wedding Booking Edit</h3>
         <div class="form-wrapper">
         <!-- Layout 2 Kolom -->

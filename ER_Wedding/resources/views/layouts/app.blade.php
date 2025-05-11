@@ -1,0 +1,101 @@
+{{--  resources/views/layouts/main.blade.php  --}}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@yield('title', 'ER Wedding')</title>
+
+    {{-- === Core Vendor CSS === --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    {{-- === Custom Theme (already refactored with `er-` prefix) === --}}
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}" />
+
+    {{--  Page–level extra style  --}}
+    @stack('head-extra')
+    @yield('css')
+</head>
+<body>
+    {{-- ================================================================= --}}
+    {{--                       GLOBAL NAVBAR (Shared)                     --}}
+    {{-- ================================================================= --}}
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ route('landingPage') }}">ER Wedding</a>
+
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="mainNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
+
+
+                    {{-- search icon  --}}
+                    <li class="nav-item d-none d-lg-block">
+                        <a href="#search" class="nav-link"><i class="fas fa-search"></i></a>
+                    </li>
+
+                    {{-- Wishlist button (buyers only) --}}
+                    @auth
+                        @if(auth()->user()->role === 'buyer')
+                            <li class="nav-item">
+                                <a href="{{ route('wishlist.index') }}" class="er-btn-outline er-wishlist-btn">
+                                    <i class="fa fa-heart me-1"></i> Wishlist
+                                </a>
+                            </li>
+                        @endif
+                    @endauth
+
+                    {{-- Auth buttons / Logout --}}
+                    @guest
+                        <li class="nav-item">
+                            <a class="btn btn-outline-pink" href="{{ route('login') }}">Masuk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-pink" href="{{ route('register') }}">Daftar</a>
+                        </li>
+                    @else
+
+                    @auth
+                    @if(auth()->user()->role === 'admin') <li class="nav-item"> <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a> </li>
+                    @endif
+                    @endauth
+
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-outline-pink" type="submit">Logout</button>
+                            </form>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {{-- ================================================================= --}}
+    {{--                           MAIN CONTENT                            --}}
+    {{-- ================================================================= --}}
+    <main>
+        @yield('content')
+    </main>
+
+    {{-- ================================================================= --}}
+    {{--                              FOOTER                              --}}
+    {{-- ================================================================= --}}
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center small">
+            &copy; {{ date('Y') }} ER Wedding. All rights reserved.
+        </div>
+    </footer>
+
+    {{-- Vendor JS  --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
+</body>
+</html>

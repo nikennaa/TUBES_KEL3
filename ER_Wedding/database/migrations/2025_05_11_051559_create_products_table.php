@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id('id_product'); // primary key custom id_product
-            $table->string('nama_produk');
-            $table->text('detail')->nullable(); // detail bisa panjang, dan nullable
-            $table->decimal('price', 10, 2); // harga, maksimal 10 digit, 2 angka dibelakang koma
-            $table->string('image')->nullable(); // simpan nama file / path gambar
-            $table->timestamps(); // created_at & updated_at otomatis
+            $table->id();
+            $table->string('name');
+            $table->text('description');
+            $table->decimal('price', 10, 2);
+            $table->string('image')->nullable();
+            $table->timestamps();
         });
     }
 

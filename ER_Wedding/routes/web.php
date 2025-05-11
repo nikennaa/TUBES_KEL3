@@ -1,30 +1,48 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RegistController;
-use App\Http\Controllers\UpdateProductController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\WeddingBookingController; // ← tambahkan controller WeddingBookingController
 
-// Rute untuk Produk
-Route::get('/product', [ProductController::class, 'index'])->name('products.index');
-Route::match(['get', 'post'], '/login', [LoginController::class, 'index'])->name('login');
+use App\Http\Controllers\ProductController;
 
-// Landing page
-Route::get('/', function () {
-    return view('landing');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
+Route::get('/', [LandingPageController::class, 'index'])->name('landingPage');
+// Route::post('/add-to-wishlist', [LandingPageController::class, 'addToWishlist'])->name('wishlist.add');
+// Route::get('/wishlist', [LandingPageController::class, 'showWishlist'])->name('wishlist.index');
+
+
+// Route::get('/search', [LandingPageController::class, 'searchPage'])->name('search.page');
+
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/products', [ProductController::class, 'index'])->name('admin.index');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.create');
+    Route::post('/products', [ProductController::class, 'store'])->name('admin.store');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.edit');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('admin.update');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.destroy');
 });
 
-// Tampilkan halaman register
-Route::get('/regist', [RegistController::class, 'index'])->name('regist');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::view('/bantuan', 'help')->name('help');
 
-// Proses data dari form register
-Route::post('/regist', [RegistController::class, 'store'])->name('regist.store');
-Route::post('/productstore', [ProductController::class, 'store'])->name('products.store');
-Route::get('/product/edit/{id_product}', [ProductController::class, 'edit'])->name('products.edit');
-Route::post('/product/update/{id_product}', [UpdateProductController::class, 'update'])->name('products.update');
-Route::get('/product/destroy/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+// Route::middleware(['auth', 'role:buyer'])->group(function () {
+//     Route::post('/products/{product}/comments', [CommentController::class, 'store']);
+//     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+//     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
+
+
+// });
+
 
 // Rute untuk Wedding Booking
 Route::get('/wedding/bookings', [WeddingBookingController::class, 'index'])->name('wedding.index');
