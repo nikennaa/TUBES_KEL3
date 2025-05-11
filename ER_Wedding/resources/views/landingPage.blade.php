@@ -68,6 +68,48 @@
     </div>
 </section>
 
+<section class="container py-5">
+    <h2 class="section-title">
+        {{ request('search_box') ? 'Search Results' : 'Result Products' }}
+    </h2>
+
+    <div class="row g-4">
+        @forelse($products as $product)
+            <div class="col-md-4">
+                <div class="card product-card h-100">
+                    <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title mb-1">{{ $product->name }}</h5>
+                        <p class="small text-muted mb-2">{{ Str::limit($product->description, 80) }}</p>
+                        <div class="product-price mb-3">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
+
+                        <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto vstack gap-3">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="name" value="{{ $product->name }}">
+                            <input type="hidden" name="description" value="{{ $product->description }}">
+                            <input type="hidden" name="price" value="{{ $product->price }}">
+                            <input type="hidden" name="image" value="{{ $product->image }}">
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-outline-pink">Add to Wishlist</button>
+                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-pink">View Product</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-12">
+                <p class="text-center text-muted">No products found.</p>
+            </div>
+        @endforelse
+    </div>
+</section>
+
+
+
 <!-- ICON STEPS -->
 <section class="py-5 steps container">
     <h2 class="section-title">Start Planning Your Wedding Today</h2>

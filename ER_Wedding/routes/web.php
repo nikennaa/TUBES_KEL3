@@ -20,7 +20,7 @@ Route::post('/add-to-wishlist', [LandingPageController::class, 'addToWishlist'])
 Route::get('/wishlist', [LandingPageController::class, 'showWishlist'])->name('wishlist.index');
 
 
-Route::get('/search', [LandingPageController::class, 'searchPage'])->name('search.page');
+// Route::get('/search', [LandingPageController::class, 'searchPage'])->name('search.page');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

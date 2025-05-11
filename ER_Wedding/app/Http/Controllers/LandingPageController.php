@@ -21,7 +21,7 @@ class LandingPageController extends Controller
         }
 
         // Return the view with the products and search query
-        return view('searchPage', compact('products'));
+        return view('landingPage', compact('products'));
     }
 
     public function addToWishlist(Request $request)
