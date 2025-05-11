@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\User;
 
 
 class LandingPageController extends Controller
@@ -20,8 +21,23 @@ class LandingPageController extends Controller
             $products = Product::all();  // Show all products if no search term
         }
 
+          $dashboardStats = null;
+    if (auth()->check() && auth()->user()->role === 'superAdmin') {
+        $dashboardStats = [
+            // 'totalPendings' => Order::where('payment_status', 'pending')->sum('total_price'),
+            // 'totalCompletes' => Order::where('payment_status', 'completed')->sum('total_price'),
+            // 'numberOfOrders' => Order::count(),
+            'numberOfProducts' => Product::count(),
+            'numberOfUsers' => User::where('role', 'buyer')->count(),
+            'numberOfAdmins' => User::where('role', 'admin')->count(),
+            'numberOfAccounts' => User::count(),
+            // 'numberOfMessages' => Message::count(),
+        ];
+    }
+
         // Return the view with the products and search query
-        return view('landingPage', compact('products'));
+        return view('landingPage', compact('products', 'dashboardStats'));
+
     }
 
     public function addToWishlist(Request $request)
@@ -74,6 +90,8 @@ class LandingPageController extends Controller
 
     return view('wishlist.index', compact('wishlistItems'));
 }
+
+
 
 
     // public function searchPage(Request $request)

@@ -165,6 +165,116 @@
     </div>
 </section>
 
+<style>
+    .admin-dashboard {
+        background: #f8f9fa;
+        padding: 40px 20px;
+        border-radius: 12px;
+        margin-top: 50px;
+    }
+
+    .admin-dashboard h2 {
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+
+    .dashboard-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .card-box {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+        transition: 0.3s ease;
+    }
+
+    .card-box:hover {
+        transform: translateY(-4px);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .card-header h4 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .card-header p {
+        font-size: 0.85rem;
+        color: #888;
+        margin: 0;
+    }
+
+    .icon {
+        font-size: 1.8rem;
+    }
+
+    .card-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #343a40;
+    }
+</style>
+
+
+@auth
+@if(auth()->user()->role === 'superAdmin' && isset($dashboardStats))
+<section class="admin-dashboard">
+    <h2>📊 Super Admin Overview</h2>
+    <div class="dashboard-cards">
+
+
+        <div class="card-box">
+            <div class="card-header">
+                <div>
+                    <h4>Total Product</h4>
+                    <p>Last 30 days</p>
+                </div>
+                <span class="icon">🛒</span>
+            </div>
+            <div class="card-value">{{ $dashboardStats['numberOfProducts'] }}</div>
+        </div>
+
+        <div class="card-box">
+            <div class="card-header">
+                <div>
+                    <h4>Total Customers</h4>
+                    <p>Last 30 days</p>
+                </div>
+                <span class="icon">👥</span>
+            </div>
+            <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
+        </div>
+
+          <div class="card-box">
+            <div class="card-header">
+                <div>
+                    <h4>Total Admins</h4>
+                    <p>Last 30 days</p>
+                </div>
+                <span class="icon">👥</span>
+            </div>
+            <div class="card-value">{{ $dashboardStats['numberOfAdmins'] }}</div>
+        </div>
+
+    </div>
+</section>
+@endif
+@endauth
+
+
 <!-- FOOTER -->
 <footer>
     <div class="container text-center">

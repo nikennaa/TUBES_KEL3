@@ -28,5 +28,13 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             'role' => 'buyer',
         ]);
+
+        User::create([
+            'name' => 'superAdmin',
+            'email' => 'superShy@gmail.com',
+            'password' => Hash::make('123456'),
+            'email_verified_at' => now(),
+            'role' => 'superAdmin',
+        ]);
     }
 }
