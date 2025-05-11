@@ -22,7 +22,7 @@ class LandingPageController extends Controller
         }
 
           $dashboardStats = null;
-    if (auth()->check() && auth()->user()->role === 'superAdmin') {
+    if (auth()->check() && (auth()->user()->role === 'superAdmin' || auth()->user()->role === 'admin'))  {
         $dashboardStats = [
             // 'totalPendings' => Order::where('payment_status', 'pending')->sum('total_price'),
             // 'totalCompletes' => Order::where('payment_status', 'completed')->sum('total_price'),

@@ -58,6 +58,7 @@
 <body>
 
 <!-- HERO -->
+ @if(auth()->check() && auth()->user()->role === 'buyer' || !auth()->check())
 <section class="hero">
     <div class="hero-content">
         <h1>Your Wedding, Planned to Perfection</h1>
@@ -164,6 +165,7 @@
         @endforeach
     </div>
 </section>
+@endif
 
 <style>
     .admin-dashboard {
@@ -230,7 +232,7 @@
 
 
 @auth
-@if(auth()->user()->role === 'superAdmin' && isset($dashboardStats))
+@if((auth()->user()->role === 'superAdmin' || auth()->user()->role === 'admin') && isset($dashboardStats))
 <section class="admin-dashboard">
     <h2>📊 Super Admin Overview</h2>
     <div class="dashboard-cards">
