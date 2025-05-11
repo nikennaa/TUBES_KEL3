@@ -96,7 +96,7 @@
                         <h5 class="card-title mb-1">{{ $product->name }}</h5>
                         <p class="small text-muted mb-2">{{ Str::limit($product->description,80) }}</p>
                         <div class="product-price mb-3">Rp{{ number_format($product->price,0,',','.') }}</div>
-                        <!-- <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto vstack gap-3">
+                        <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto vstack gap-3">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="name" value="{{ $product->name }}">
@@ -109,7 +109,7 @@
                         </div>
 
 
-                        </form> -->
+                        </form>
                     </div>
                 </div>
             </div>
