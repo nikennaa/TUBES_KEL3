@@ -35,13 +35,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::view('/bantuan', 'help')->name('help');
 
-// Route::middleware(['auth', 'role:buyer'])->group(function () {
-//     Route::post('/products/{product}/comments', [CommentController::class, 'store']);
-//     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
-//     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
+Route::middleware(['auth', 'role:buyer'])->group(function () {
+    Route::post('/products/{product}/comments', [CommentController::class, 'store']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
 
 
-// });
+});
 
 
 // Rute untuk Wedding Booking

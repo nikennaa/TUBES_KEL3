@@ -18,9 +18,9 @@ class Product extends Model
         'image',
     ];
 
-    // public function comments()
-    // {
-    //     return $this->hasMany(Comment::class);
-    // }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
 }
