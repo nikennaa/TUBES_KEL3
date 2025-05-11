@@ -39,11 +39,6 @@ Route::middleware(['auth', 'role:buyer'])->group(function () {
     Route::post('/products/{product}/comments', [CommentController::class, 'store']);
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
-
-
-});
-
-
 // Rute untuk Wedding Booking
 Route::get('/wedding/bookings', [WeddingBookingController::class, 'index'])->name('wedding.index');
 Route::get('/wedding/bookings/create', [WeddingBookingController::class, 'create'])->name('wedding.create'); // Form untuk membuat booking
@@ -51,4 +46,9 @@ Route::post('/wedding/bookings', [WeddingBookingController::class, 'store'])->na
 Route::get('/wedding/bookings/edit/{id}', [WeddingBookingController::class, 'edit'])->name('wedding.edit'); // Form untuk mengedit booking
 Route::put('/wedding/bookings/update/{id}', [WeddingBookingController::class, 'update'])->name('wedding.update');  // Mengupdate booking
 Route::get('/wedding/bookings/destroy/{id}', [WeddingBookingController::class, 'destroy'])->name('wedding.destroy'); // Menghapus booking
+
+});
+
+
+
 

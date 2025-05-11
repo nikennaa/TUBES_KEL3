@@ -149,9 +149,15 @@
                             <button type="submit" class="btn btn-outline-pink">Add to Wishlist</button>
                             <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-pink">View Product</a>
                         </div>
-
-
+                        @auth
+                     @if(auth()->user()->role === 'buyer')
+                         <div class="d-grid gap-2">
+                         <a href="{{ route('wedding.index', $product->id) }}" class="btn btn-outline-pink">Book Now</a>
+                     </div>
+                     @endif
+                 @endauth
                         </form>
+
                     </div>
                 </div>
             </div>

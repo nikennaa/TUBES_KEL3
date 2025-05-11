@@ -51,6 +51,8 @@
                         @endif
                     @endauth
 
+
+                 
                     {{-- Auth buttons / Logout --}}
                     @guest
                         <li class="nav-item">
