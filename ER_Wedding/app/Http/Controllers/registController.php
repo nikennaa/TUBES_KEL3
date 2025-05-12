@@ -42,7 +42,8 @@ class RegistController extends Controller
             return redirect()->route('login')->with('message', $messages);
         }
 
-        return redirect()->back()->with('message', $messages);
+        // return redirect()->back()->with('message', $messages);
         // Redirect ke halaman login dengan pesan sukses
+        return redirect()->route('login')->with('success', 'Registration successful! Please login.');
     }
 }

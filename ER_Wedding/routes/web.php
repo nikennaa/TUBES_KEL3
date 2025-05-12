@@ -18,7 +18,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/', [LandingPageController::class, 'index'])->name('landingPage');
 Route::post('/add-to-wishlist', [LandingPageController::class, 'addToWishlist'])->name('wishlist.add');
 Route::get('/wishlist', [LandingPageController::class, 'showWishlist'])->name('wishlist.index');
-
+Route::delete('/wishlist/{id}', [LandingPageController::class, 'removeFromWishlist'])->name('wishlist.remove');
 
 // Route::get('/search', [LandingPageController::class, 'searchPage'])->name('search.page');
 

@@ -104,44 +104,56 @@
 </div>
 
 <section class="container py-5">
-    <h2 class="section-title">
-        {{ request('search_box') ? 'Search Results' : 'Result Products' }}
-    </h2>
 
-    <div class="row g-4">
-        @forelse($products as $product)
-            <div class="col-md-4">
-                <div class="card product-card h-100">
-                    <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
+    @if($resultProducts->isNotEmpty())
+        <div id="result-wrapper">
+            <div class="d-flex justify-content-between align-items-center mb-4 position-relative">
 
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title mb-1">{{ $product->name }}</h5>
-                        <p class="small text-muted mb-2">{{ Str::limit($product->description, 80) }}</p>
-                        <div class="product-price mb-3">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
+                <h3 class="text-center w-100 fw-bold mb-0">Search Results</h3>
+                <button id="close-result" class="btn btn-sm btn-outline-secondary position-absolute" style="top: 0; right: 0;">
+                &times;
+            </button>
 
-                        <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto vstack gap-3">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="name" value="{{ $product->name }}">
-                            <input type="hidden" name="description" value="{{ $product->description }}">
-                            <input type="hidden" name="price" value="{{ $product->price }}">
-                            <input type="hidden" name="image" value="{{ $product->image }}">
+            </div>
 
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-outline-pink">Add to Wishlist</button>
-                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-pink">View Product</a>
+            <div class="row g-4">
+                @forelse($resultProducts as $product)
+                    <div class="col-md-4">
+                        <div class="card product-card h-100">
+                            <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title mb-1">{{ $product->name }}</h5>
+                                <p class="small text-muted mb-2">{{ Str::limit($product->description, 80) }}</p>
+                                <div class="product-price mb-3">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
+
+                                <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto vstack gap-3">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="name" value="{{ $product->name }}">
+                                    <input type="hidden" name="description" value="{{ $product->description }}">
+                                    <input type="hidden" name="price" value="{{ $product->price }}">
+                                    <input type="hidden" name="image" value="{{ $product->image }}">
+
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-outline-pink">Add to Wishlist</button>
+                                        <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-pink">View Product</a>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                @empty
+                    <div class="col-12">
+                        <p class="text-center text-muted">No products found.</p>
+                    </div>
+                @endforelse
             </div>
-        @empty
-            <div class="col-12">
-                <p class="text-center text-muted">No products found.</p>
-            </div>
-        @endforelse
-    </div>
+        </div>
+    @endif
+
 </section>
+
+
 
 
 
@@ -165,7 +177,7 @@
 <section class="container py-5">
     <h2 class="section-title">Latest Products</h2>
     <div class="row g-4">
-        @foreach($products as $product)
+        @foreach($latestProducts as $product)
             <div class="col-md-4">
                 <div class="card product-card h-100">
                     <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
@@ -198,6 +210,7 @@
             </div>
         @endforeach
     </div>
+
 </section>
 @endif
 
@@ -324,6 +337,32 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const closeBtn = document.getElementById('close-result');
+        const wrapper = document.getElementById('result-wrapper');
+        const heading = document.getElementById('search-heading');
+
+        if (closeBtn && wrapper) {
+            closeBtn.addEventListener('click', function () {
+                wrapper.remove(); // hilangkan hasil produk
+                closeBtn.remove(); // hilangkan tombol X
+                if (heading) {
+                    heading.textContent = 'Result Products'; // ubah judul
+                }
+
+                // Bersihkan query string "search_box" dari URL
+                const url = new URL(window.location.href);
+                url.searchParams.delete('search_box');
+                window.history.replaceState({}, '', url);
+            });
+        }
+    });
+</script>
+
+
+
 
 @endsection
 
