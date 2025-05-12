@@ -17,7 +17,10 @@
 
 <section class="booking-list">
     <h3>Wedding Booking List</h3>
-    <a href="{{ route('wedding.create') }}" class="btn add-new-btn">Add New Booking</a>
+   @foreach($products as $product)
+    <a href="{{ route('wedding.create', ['productId' => $product->id]) }}" class="btn add-new-btn">Add New Booking {{ $product->name }}</a>
+@endforeach
+
 
     <div class="table-container">
         <table>
