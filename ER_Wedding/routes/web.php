@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\WeddingBookingController; // ← tambahkan controller WeddingBookingController
+use App\Http\Controllers\profileController;
 
 use App\Http\Controllers\ProductController;
 
@@ -49,6 +50,17 @@ Route::get('/wedding/bookings/destroy/{id}', [WeddingBookingController::class, '
 
 });
 
+// User Profile routes
+Route::middleware(['auth'])->group(function () {
+    // Menampilkan halaman profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit'); // Mengarah ke resources/views/profile.blade.php
 
+    // Menangani update data profil
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Gunakan PUT untuk update
 
+    // Route untuk update password
+    Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
+    // Route untuk delete profile
+    Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});

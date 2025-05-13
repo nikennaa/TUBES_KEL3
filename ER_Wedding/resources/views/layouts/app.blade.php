@@ -48,11 +48,18 @@
                                     <i class="fa fa-heart me-1"></i> Wishlist
                                 </a>
                             </li>
+
+                            {{-- Link ke Profil --}}
+                            <li class="nav-item">
+                                <a class="btn btn-outline-secondary" href="{{ route('profile.edit') }}">
+                                    <i class="fa fa-user me-1"></i> Profil Saya
+                                </a>
+                            </li>
                         @endif
                     @endauth
 
 
-                 
+
                     {{-- Auth buttons / Logout --}}
                     @guest
                         <li class="nav-item">
