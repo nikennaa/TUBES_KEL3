@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\WeddingBookingController; // ← tambahkan controller WeddingBookingController
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SuperAdminController;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -49,6 +50,13 @@ Route::get('/wedding/bookings/destroy/{id}', [WeddingBookingController::class, '
 
 });
 
-
+Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('superadmin.')->group(function () {
+    Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('index');
+    Route::get('/create', [SuperAdminController::class, 'create'])->name('create');
+    Route::post('/store', [SuperAdminController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [SuperAdminController::class, 'edit'])->name('edit');
+    Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [SuperAdminController::class, 'destroy'])->name('destroy');
+});
 
 
