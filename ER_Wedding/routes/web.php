@@ -9,6 +9,7 @@ use App\Http\Controllers\WeddingBookingController; // ← tambahkan controller W
 use App\Http\Controllers\profileController;
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SuperAdminController;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -49,6 +50,8 @@ Route::put('/wedding/bookings/update/{id}', [WeddingBookingController::class, 'u
 Route::get('/wedding/bookings/destroy/{id}', [WeddingBookingController::class, 'destroy'])->name('wedding.destroy'); // Menghapus booking
 
 });
+
+
 
 // User Profile routes
 Route::middleware(['auth'])->group(function () {
