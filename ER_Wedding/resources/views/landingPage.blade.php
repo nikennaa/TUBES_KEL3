@@ -15,47 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Extra custom CSS  -->
-    <style>
-        :root {
-            --pink:#e83e8c;
-            --dark:#343434;
-        }
-        body {font-family:"Poppins", sans-serif;}
-        .btn-pink       {background:var(--pink);color:#fff;border:none;border-radius:6px}
-        .btn-outline-pink{border:2px solid var(--pink);color:var(--pink);border-radius:6px;background:transparent}
-        .btn-outline-pink:hover{background:var(--pink);color:#fff}
-        a{text-decoration:none}
-        .section-title{font-weight:700;font-size:1.8rem;text-align:center;margin-bottom:2rem}
-
-        /* NAVBAR */
-        .navbar-brand{font-weight:700;font-size:1.6rem}
-        .nav-link{font-weight:500}
-
-        /* HERO */
-        .hero {position: relative;height: 520px;background-size: cover;background-position: center;display: flex;align-items: center;justify-content: center;color: #fff;}
-        .hero::after {content: "";position: absolute;inset: 0;background: rgba(0, 0, 0, 0.55);}
-        .hero-content {position: relative;color: white;z-index: 1;text-align: center;width: 100%;max-width: 750px;padding: 0 1rem;}
-        .hero h1{font-size:2.5rem;font-weight:700;letter-spacing:1px}
-        .search-wrapper{background:#fff;border-radius:50px;padding:.35rem .75rem;display:flex;gap:.5rem;margin-top:1.6rem}
-        .search-wrapper input{border:none;flex:1;outline:none;font-size:.95rem}
-        .search-wrapper .btn{border-radius:50px;padding:.55rem 1.5rem}
-
-        /* ICON STEPS */
-        .steps .card{border:none;text-align:center}
-        .steps .card i{font-size:2rem;color:var(--pink);margin-bottom:.6rem}
-        .steps .card-title{font-size:1rem;font-weight:600}
-
-        /* PRODUCTS grid */
-        .product-card .card-img-top{height:160px;object-fit:cover}
-        .product-price{color:var(--pink);font-weight:600}
-
-        /* FOOTER */
-        footer{background:var(--dark);color:#fff;padding:40px 0;margin-top:4rem}
-        footer a{color:#f8f9fa}
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 <body>
 
