@@ -16,11 +16,10 @@ class ProductController extends Controller
    // Misalnya di ProductController
     public function index()
     {
-        // Ambil 3 produk terbaru berdasarkan updated_at
-        $latestProducts = Product::orderBy('updated_at', 'desc')->take(3)->get();
-        return view('your-view-name', compact('latestProducts'));
+        // Ambil semua produk
+        $products = Product::all();
+        return view('admin.index', compact('products'));
     }
-
 
     /**
      * Show the form for creating a new resource.
