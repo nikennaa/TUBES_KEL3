@@ -113,26 +113,6 @@
 
 </section>
 
-
-
-
-
-<!-- ICON STEPS -->
-<section class="py-5 steps container">
-    <h2 class="section-title">Start Planning Your Wedding Today</h2>
-    <div class="row g-4">
-        @php $icons=[['fa-search','Manage Suppliers'],['fa-list','Organize Guest List'],['fa-check','Checklist'],['fa-coins','Manage Budget'],['fa-heart','Inspiration']]; @endphp
-        @foreach($icons as [$icon,$title])
-            <div class="col-6 col-md-3 col-lg">
-                <div class="card h-100 p-3">
-                    <i class="fa {{ $icon }}"></i>
-                    <h5 class="card-title">{{ $title }}</h5>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</section>
-
 <!-- LATEST PRODUCTS -->
 <section class="container py-5">
     <h2 class="section-title">Latest Products</h2>
