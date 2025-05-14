@@ -15,7 +15,7 @@ class RoleMiddleware
         if (!$user || !in_array($user->role, $roles)) {
             // Jika tidak memiliki akses, redirect ke halaman utama dengan pesan error
             session()->flash('error', 'Anda tidak memiliki akses ke halaman ini.');
-            return redirect()->route('home');
+            return redirect()->route('Home');
         }
 
         return $next($request);

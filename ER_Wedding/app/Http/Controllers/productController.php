@@ -13,11 +13,14 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+   // Misalnya di ProductController
     public function index()
     {
-        $products = Product::latest()->get();
-        return view('admin.index', compact('products'));
+        // Ambil 3 produk terbaru berdasarkan updated_at
+        $latestProducts = Product::orderBy('updated_at', 'desc')->take(3)->get();
+        return view('your-view-name', compact('latestProducts'));
     }
+
 
     /**
      * Show the form for creating a new resource.

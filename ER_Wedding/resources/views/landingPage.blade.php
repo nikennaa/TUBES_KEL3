@@ -283,53 +283,6 @@
 @endif
 @endauth
 
-
-
-@auth
-@if(auth()->user()->role === 'superAdmin' && isset($dashboardStats))
-<section class="admin-dashboard">
-    <h2>📊 Super Admin Overview</h2>
-    <div class="dashboard-cards">
-
-
-        <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Product</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">🛒</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfProducts'] }}</div>
-        </div>
-
-        <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Customers</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">👥</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
-        </div>
-
-          <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Admins</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">👥</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfAdmins'] }}</div>
-        </div>
-
-    </div>
-</section>
-@endif
-@endauth
-
 <!-- FOOTER -->
 <footer>
     <div class="container text-center">
