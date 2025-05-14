@@ -51,7 +51,14 @@ Route::get('/wedding/bookings/destroy/{id}', [WeddingBookingController::class, '
 
 });
 
-
+Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('superadmin.')->group(function () {
+    Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('index');
+    Route::get('/create', [SuperAdminController::class, 'create'])->name('create');
+    Route::post('/store', [SuperAdminController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [SuperAdminController::class, 'edit'])->name('edit');
+    Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [SuperAdminController::class, 'destroy'])->name('destroy');
+});
 
 // User Profile routes
 Route::middleware(['auth'])->group(function () {
