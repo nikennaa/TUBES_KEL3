@@ -58,6 +58,7 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
     Route::get('/edit/{id}', [SuperAdminController::class, 'edit'])->name('edit');
     Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [SuperAdminController::class, 'destroy'])->name('destroy');
+    Route::get('/fitur', [SuperAdminController::class, 'index'])->name('fitur');
 });
 
 // User Profile routes
