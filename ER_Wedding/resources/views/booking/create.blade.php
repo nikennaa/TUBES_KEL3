@@ -15,6 +15,8 @@
         @csrf
         <h3>Wedding Booking Form</h3>
         <div class="form-wrapper">
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+
         <!-- Informasi Pasangan Pengantin -->
         <div class="form-row">
             <div class="form-group">
