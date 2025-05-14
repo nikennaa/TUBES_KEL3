@@ -242,56 +242,17 @@
 @if((auth()->user()->role === 'superAdmin' || auth()->user()->role === 'admin') && isset($dashboardStats))
 <section class="admin-dashboard">
     <h2>📊 Super Admin Overview</h2>
-    <div class="dashboard-cards">
 
-
-        <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Product</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">🛒</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfProducts'] }}</div>
-        </div>
-
-        <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Customers</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">👥</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
-        </div>
-
-          <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Admins</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">👥</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfAdmins'] }}</div>
-        </div>
-
+    {{-- Tombol untuk fitur Super Admin --}}
+    @if(auth()->user()->role === 'superAdmin')
+    <div class="mb-4">
+        <a href="{{ route('superadmin.fitur') }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+            🔧 Masuk Fitur Super Admin
+        </a>
     </div>
-</section>
-@endif
-@endauth
+    @endif
 
-
-
-@auth
-@if(auth()->user()->role === 'superAdmin' && isset($dashboardStats))
-<section class="admin-dashboard">
-    <h2>📊 Super Admin Overview</h2>
     <div class="dashboard-cards">
-
-
         <div class="card-box">
             <div class="card-header">
                 <div>
@@ -314,7 +275,7 @@
             <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
         </div>
 
-          <div class="card-box">
+        <div class="card-box">
             <div class="card-header">
                 <div>
                     <h4>Total Admins</h4>
@@ -324,7 +285,6 @@
             </div>
             <div class="card-value">{{ $dashboardStats['numberOfAdmins'] }}</div>
         </div>
-
     </div>
 </section>
 @endif
