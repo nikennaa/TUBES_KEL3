@@ -16,10 +16,11 @@
 
         <h3>Wedding Booking Edit</h3>
         <div class="form-wrapper">
-        <!-- Layout 2 Kolom -->
-        <div class="form-row">
-            <!-- Informasi Pasangan Pengantin -->
-            <div class="form-group">
+            <!-- Layout 2 Kolom -->
+            <div class="form-row">
+                <!-- Informasi Pasangan Pengantin -->
+                <div class="form-group">
+                <input type="hidden" name="product_id" value="{{ $booking->product_id }}">
                 <label for="groom_name">Groom's Name</label>
                 <input type="text" class="box" name="groom_name" value="{{ $booking->groom_name }}" required placeholder="Groom's Name">
             </div>

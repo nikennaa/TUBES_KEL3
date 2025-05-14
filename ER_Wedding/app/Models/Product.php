@@ -23,4 +23,10 @@ class Product extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function weddingBookings()
+{
+    return $this->hasMany(WeddingBooking::class);
+}
+
+
 }

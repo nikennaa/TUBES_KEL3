@@ -20,7 +20,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/', [LandingPageController::class, 'index'])->name('landingPage');
 Route::post('/add-to-wishlist', [LandingPageController::class, 'addToWishlist'])->name('wishlist.add');
 Route::get('/wishlist', [LandingPageController::class, 'showWishlist'])->name('wishlist.index');
-
+Route::delete('/wishlist/{id}', [LandingPageController::class, 'removeFromWishlist'])->name('wishlist.remove');
 
 // Route::get('/search', [LandingPageController::class, 'searchPage'])->name('search.page');
 
@@ -43,7 +43,7 @@ Route::middleware(['auth', 'role:buyer'])->group(function () {
     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
 // Rute untuk Wedding Booking
 Route::get('/wedding/bookings', [WeddingBookingController::class, 'index'])->name('wedding.index');
-Route::get('/wedding/bookings/create', [WeddingBookingController::class, 'create'])->name('wedding.create'); // Form untuk membuat booking
+Route::get('/wedding/bookings/create/{productId}', [WeddingBookingController::class, 'create'])->name('wedding.create'); // Form untuk membuat booking
 Route::post('/wedding/bookings', [WeddingBookingController::class, 'store'])->name('wedding.store'); // Menyimpan booking baru
 Route::get('/wedding/bookings/edit/{id}', [WeddingBookingController::class, 'edit'])->name('wedding.edit'); // Form untuk mengedit booking
 Route::put('/wedding/bookings/update/{id}', [WeddingBookingController::class, 'update'])->name('wedding.update');  // Mengupdate booking

@@ -12,14 +12,15 @@ class LandingPageController extends Controller
 {
     public function index(Request $request)
     {
-        $search_box = $request->input('search_box');
+          $search_box = $request->input('search_box');
 
-        // Check if search query exists and fetch results
-        if ($search_box) {
-            $products = Product::where('name', 'LIKE', '%' . $search_box . '%')->get();
-        } else {
-            $products = Product::all();  // Show all products if no search term
-        }
+    $resultProducts = collect(); // kosongkan default pencarian
+    $latestProducts = Product::latest()->take(6)->get(); // ambil produk terbaru
+
+    if ($search_box) {
+        $resultProducts = Product::where('name', 'LIKE', '%' . $search_box . '%')->get();
+    }
+
 
           $dashboardStats = null;
     if (auth()->check() && (auth()->user()->role === 'superAdmin' || auth()->user()->role === 'admin'))  {
@@ -36,7 +37,8 @@ class LandingPageController extends Controller
     }
 
         // Return the view with the products and search query
-        return view('landingPage', compact('products', 'dashboardStats'));
+       return view('landingPage', compact('resultProducts', 'latestProducts', 'dashboardStats'));
+
 
     }
 
@@ -91,6 +93,20 @@ class LandingPageController extends Controller
     return view('wishlist.index', compact('wishlistItems'));
 }
 
+public function removeFromWishlist($id)
+{
+    $wishlist = Wishlist::where('id', $id)
+        ->where('user_id', auth()->id()) // pastikan hanya hapus wishlist milik user sendiri
+        ->first();
+
+    if (!$wishlist) {
+        return back()->with('error', 'Item not found or not yours.');
+    }
+
+    $wishlist->delete();
+
+    return back()->with('message', 'Product removed from wishlist');
+}
 
 
 
