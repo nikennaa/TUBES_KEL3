@@ -132,6 +132,21 @@ a {
     font-weight: 600;
 }
 
+.whatsapp-button {
+  position: fixed !important;
+  bottom: 60px !important;
+  right: 20px !important;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+}
+
 /* FOOTER */
 footer {
     background: var(--dark);
