@@ -151,8 +151,8 @@
         @endforeach
     </div>
 {{-- Tambahkan tombol/link View All Products --}}
-    <div style="margin-top: 20px;">
-        <a href="{{ route('products.all') }}" class="btn btn-pink">View All Products</a>
+    <div class="text-center mt-4">
+        <a href="{{ route('products.all') }}" class="btn btn-pink btn-lg">View All Products</a>
     </div>
 
     <!-- Tambahkan ini di bagian landing page tempat kamu mau menampilkan logo WA -->
