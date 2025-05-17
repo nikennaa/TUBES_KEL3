@@ -120,7 +120,7 @@
         @foreach($latestProducts as $product)
             <div class="col-md-4">
                 <div class="card product-card h-100">
-                    <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
+                    <img src="{{ asset('products/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top" />
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title mb-1">{{ $product->name }}</h5>
                         <p class="small text-muted mb-2">{{ Str::limit($product->description,80) }}</p>
@@ -150,7 +150,10 @@
             </div>
         @endforeach
     </div>
-
+{{-- Tambahkan tombol/link View All Products --}}
+    <div style="margin-top: 20px;">
+        <a href="{{ route('products.all') }}" class="btn btn-pink">View All Products</a>
+    </div>
 </section>
 @endif
 

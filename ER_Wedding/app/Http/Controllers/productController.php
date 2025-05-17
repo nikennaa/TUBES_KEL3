@@ -16,9 +16,10 @@ class ProductController extends Controller
    // Misalnya di ProductController
     public function index()
     {
-        // Ambil semua produk
-        $products = Product::all();
-        return view('admin.index', compact('products'));
+    // Ambil 3 produk terbaru berdasarkan tanggal dibuat
+    $products = Product::orderBy('created_at', 'desc')->take(3)->get();
+
+    return view('admin.index', compact('products'));
     }
 
     /**
@@ -114,4 +115,14 @@ class ProductController extends Controller
         session()->flash('success', 'Produk berhasil dihapus!');
         return redirect()->route('admin.index');
     }
+
+    public function allProducts()
+{
+    // Ambil semua produk untuk halaman publik
+    $products = Product::all();
+
+    // Kirim ke view all_products.blade.php
+    return view('products.all_products', compact('products'));
+}
+
 }
