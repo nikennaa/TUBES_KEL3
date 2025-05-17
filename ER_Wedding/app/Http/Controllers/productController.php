@@ -116,13 +116,22 @@ class ProductController extends Controller
         return redirect()->route('admin.index');
     }
 
-    public function allProducts()
-{
-    // Ambil semua produk untuk halaman publik
-    $products = Product::all();
+    public function allProducts(Request $request)
+    {
+        $query = Product::query();
 
-    // Kirim ke view all_products.blade.php
-    return view('products.all_products', compact('products'));
-}
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->min_price);
+        }
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
+        $products = $query->get();
+
+        // Kirim ke view all_products.blade.php
+        return view('products.all_products', compact('products'));
+    }
+
 
 }

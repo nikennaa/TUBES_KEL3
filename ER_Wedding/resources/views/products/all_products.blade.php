@@ -9,8 +9,34 @@
 <div class="container my-4">
     <h1 class="mb-4">All Products</h1>
 
-    {{-- Tombol Kembali --}}
-    <a href="{{ route('landingPage') }}" class="btn btn-secondary mb-4">← Back</a>
+    <div class="container my-4 position-relative" style="min-height: 40px;">
+    {{-- Tombol Back --}}
+    <a href="{{ route('landingPage') }}" class="btn btn-secondary">← Back</a>
+
+    {{-- Tombol Filter --}}
+    <button id="filterToggle" class="btn btn-outline-primary position-absolute" style="top: 4px; right: 0;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .4.8l-4.667 5.5a.5.5 0 0 0-.133.352v4.346a.5.5 0 0 1-.276.447l-3 1.5A.5.5 0 0 1 6 12.5v-7.3a.5.5 0 0 0-.133-.352L1.1 1.8a.5.5 0 0 1 .4-.3z"/>
+        </svg>
+        Filter
+    </button>
+
+    {{-- Filter Form --}}
+    <form id="filterForm" action="{{ route('products.all') }}" method="GET" class="card p-3 mb-4" style="display:none; max-width: 400px;">
+        <div class="mb-3">
+            <label for="min_price" class="form-label">Min Price</label>
+            <input type="number" class="form-control" id="min_price" name="min_price" placeholder="0" min="0" value="{{ request('min_price') }}">
+        </div>
+        <div class="mb-3">
+            <label for="max_price" class="form-label">Max Price</label>
+            <input type="number" class="form-control" id="max_price" name="max_price" placeholder="10000000" min="0" value="{{ request('max_price') }}">
+        </div>
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Apply</button>
+            <a href="{{ route('products.all') }}" class="btn btn-outline-secondary">Reset</a>
+        </div>
+    </form>
+</div>
 
     @if($products->count() > 0)
         <div class="row">
@@ -53,6 +79,7 @@
                                     @endauth
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -61,5 +88,13 @@
     @else
         <p>No products found.</p>
     @endif
+    @section('scripts')
+<script>
+    document.getElementById('filterToggle').addEventListener('click', function () {
+        const form = document.getElementById('filterForm');
+        form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+    });
+</script>
+@endsection
 </div>
 @endsection
