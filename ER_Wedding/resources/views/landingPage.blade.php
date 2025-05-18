@@ -139,7 +139,7 @@
                         @auth
                      @if(auth()->user()->role === 'buyer')
                          <div class="d-grid gap-2">
-                         <a href="{{ route('wedding.index', $product->id) }}" class="btn btn-outline-pink">Book Now</a>
+                         <a href="{{ route('wedding.create', ['productId' => $product->id]) }}" class="btn btn-outline-pink">Book Now</a>
                      </div>
                      @endif
                  @endauth

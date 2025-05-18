@@ -78,3 +78,6 @@ Route::middleware(['auth'])->group(function () {
 
 // Route untuk menampilkan semua produk tanpa batasan role
 Route::get('/all-products', [ProductController::class, 'allProducts'])->name('products.all');
+
+// Route untuk menampilkan produk yang sudah di order
+Route::get('/my-orders', [WeddingBookingController::class, 'myOrders'])->name('orders.mine');

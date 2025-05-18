@@ -137,4 +137,14 @@ public function store(Request $request)
         // Redirect ke halaman daftar booking dengan pesan sukses
         return redirect()->route('wedding.index')->with('success', 'Booking deleted successfully!');
     }
+
+    public function myOrders()
+    {
+        $bookings = WeddingBooking::where('user_id', auth()->id())->get();
+        $products = Product::all();
+
+        return view('booking.my_orders', compact('bookings', 'products'));
+
+    }
+
 }
