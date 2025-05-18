@@ -57,3 +57,8 @@
     @endif
 </section>
 @endsection
+
+{{-- Tambahkan ini untuk memuat JS reCAPTCHA --}}
+@push('scripts')
+    {!! NoCaptcha::renderJs() !!}
+@endpush

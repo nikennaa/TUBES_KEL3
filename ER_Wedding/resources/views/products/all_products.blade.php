@@ -2,7 +2,6 @@
 
 @section('title', 'All Products')
 
-{{-- Tambahkan CSS --}}
 <link rel="stylesheet" href="{{ asset('css/allProduct-style.css') }}">
 
 @section('content')
@@ -10,10 +9,11 @@
     <h1 class="mb-4">All Products</h1>
 
     <div class="container my-4 position-relative" style="min-height: 40px;">
-    {{-- Tombol Back --}}
+
+    <!--Tombol Back -->
     <a href="{{ route('landingPage') }}" class="btn btn-secondary">← Back</a>
 
-    {{-- Tombol Filter --}}
+    <!--Tombol Filter -->
     <button id="filterToggle" class="btn btn-outline-primary position-absolute" style="top: 4px; right: 0;">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
             <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .4.8l-4.667 5.5a.5.5 0 0 0-.133.352v4.346a.5.5 0 0 1-.276.447l-3 1.5A.5.5 0 0 1 6 12.5v-7.3a.5.5 0 0 0-.133-.352L1.1 1.8a.5.5 0 0 1 .4-.3z"/>
@@ -21,7 +21,7 @@
         Filter
     </button>
 
-    {{-- Filter Form --}}
+    <!--Filter Form -->
     <form id="filterForm" action="{{ route('products.all') }}" method="GET" class="card p-3 mb-4" style="display:none; max-width: 400px;">
         <div class="mb-3">
             <label for="min_price" class="form-label">Min Price</label>

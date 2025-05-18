@@ -16,6 +16,8 @@
     {{--  Page–level extra style  --}}
     @stack('head-extra')
     @yield('css')
+
+    {!! NoCaptcha::renderJs() !!}
 </head>
 <body>
     {{-- ================================================================= --}}
@@ -34,7 +36,6 @@
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
 
-
                     {{-- search icon  --}}
                     <li class="nav-item d-none d-lg-block">
                         <a href="#search" class="nav-link"><i class="fas fa-search"></i></a>
@@ -49,6 +50,16 @@
                                 </a>
                             </li>
 
+                            {{-- My Orders button --}}
+                            <li class="nav-item">
+                                <a href="{{ route('orders.mine') }}" class="er-btn-outline er-wishlist-btn">
+                                    <i class="fa fa-clipboard-list me-1"></i> My Orders
+                                </a>
+                            </li>
+
+                            {{-- Cart button --}}   
+
+
                             {{-- Link ke Profil --}}
                             <li class="nav-item">
                                 <a class="btn btn-outline-secondary" href="{{ route('profile.edit') }}">
@@ -57,8 +68,6 @@
                             </li>
                         @endif
                     @endauth
-
-
 
                     {{-- Auth buttons / Logout --}}
                     @guest
@@ -69,11 +78,13 @@
                             <a class="btn btn-outline-pink" href="{{ route('register') }}">Daftar</a>
                         </li>
                     @else
-
-                    @auth
-                    @if(auth()->user()->role === 'admin') <li class="nav-item"> <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a> </li>
-                    @endif
-                    @endauth
+                        @auth
+                            @if(auth()->user()->role === 'admin')
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a>
+                                </li>
+                            @endif
+                        @endauth
 
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST" class="d-inline">
@@ -105,6 +116,9 @@
 
     {{-- Vendor JS  --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    {{-- {!! NoCaptcha::renderJs() !!} --}}
+
     @stack('scripts')
     @yield('scripts')
 </body>
