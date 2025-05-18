@@ -113,26 +113,6 @@
 
 </section>
 
-
-
-
-
-<!-- ICON STEPS -->
-<section class="py-5 steps container">
-    <h2 class="section-title">Start Planning Your Wedding Today</h2>
-    <div class="row g-4">
-        @php $icons=[['fa-search','Manage Suppliers'],['fa-list','Organize Guest List'],['fa-check','Checklist'],['fa-coins','Manage Budget'],['fa-heart','Inspiration']]; @endphp
-        @foreach($icons as [$icon,$title])
-            <div class="col-6 col-md-3 col-lg">
-                <div class="card h-100 p-3">
-                    <i class="fa {{ $icon }}"></i>
-                    <h5 class="card-title">{{ $title }}</h5>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</section>
-
 <!-- LATEST PRODUCTS -->
 <section class="container py-5">
     <h2 class="section-title">Latest Products</h2>
@@ -140,7 +120,7 @@
         @foreach($latestProducts as $product)
             <div class="col-md-4">
                 <div class="card product-card h-100">
-                    <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
+                    <img src="{{ asset('products/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top" />
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title mb-1">{{ $product->name }}</h5>
                         <p class="small text-muted mb-2">{{ Str::limit($product->description,80) }}</p>
@@ -170,7 +150,15 @@
             </div>
         @endforeach
     </div>
+{{-- Tambahkan tombol/link View All Products --}}
+    <div class="text-center mt-4">
+        <a href="{{ route('products.all') }}" class="btn btn-pink btn-lg">View All Products</a>
+    </div>
 
+    <!-- Tambahkan ini di bagian landing page tempat kamu mau menampilkan logo WA -->
+<a href="https://wa.me/6287809922331" target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp Admin">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-button" />
+</a>
 </section>
 @endif
 
@@ -283,52 +271,6 @@
 @endif
 @endauth
 
-
-
-@auth
-@if(auth()->user()->role === 'superAdmin' && isset($dashboardStats))
-<section class="admin-dashboard">
-    <h2>📊 Super Admin Overview</h2>
-    <div class="dashboard-cards">
-
-
-        <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Product</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">🛒</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfProducts'] }}</div>
-        </div>
-
-        <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Customers</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">👥</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
-        </div>
-
-          <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Admins</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">👥</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfAdmins'] }}</div>
-        </div>
-
-    </div>
-</section>
-@endif
-@endauth
 
 <!-- FOOTER -->
 <footer>

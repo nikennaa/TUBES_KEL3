@@ -58,6 +58,7 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
     Route::get('/edit/{id}', [SuperAdminController::class, 'edit'])->name('edit');
     Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [SuperAdminController::class, 'destroy'])->name('destroy');
+    Route::get('/fitur', [SuperAdminController::class, 'index'])->name('fitur');
 });
 
 // User Profile routes
@@ -74,3 +75,6 @@ Route::middleware(['auth'])->group(function () {
     // Route untuk delete profile
     Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Route untuk menampilkan semua produk tanpa batasan role
+Route::get('/all-products', [ProductController::class, 'allProducts'])->name('products.all');
