@@ -21,16 +21,8 @@
 
         <input type="file" accept="image/jpg, image/jpeg, image/png" required class="box" name="image" onchange="previewImage(event)">
 
-        <div id="imagePreview" class="mt-2 mb-6">
-            <p id="imageMessage" class="text-sm" style="font-size: 1.4rem; color: var(--light-color);">
-                Preview Gambar:<br>
-                <span>Tidak Ada Gambar</span>
-            </p>
-            <img id="preview" class="image hidden" style="max-width: 100%; height: auto; border-radius: .5rem;" />
-        </div>
-
         <div class="button-group">
-            <a href="{{ route('admin.index') }}" class="option-btn">Kembali</a>
+            <a href="{{ route('admin.index') }}" class="btn option-btn">Kembali</a>
             <button type="submit" class="btn">Simpan</button>
         </div>
     </form>

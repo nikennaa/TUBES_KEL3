@@ -271,38 +271,71 @@ section{
    font-size: 2rem;
 }
 
-.add-products form{
-   max-width: 50rem;
-   border-radius: .5rem;
-   background-color: #ffe6f0;
-   border:var(--border);
-   padding:2rem;
-   text-align: center;
-   margin:0 auto;
-   box-shadow: var(--box-shadow);
+.add-products form {
+    max-width: 50rem;
+    border-radius: .5rem;
+    background-color: var(--white);
+    border: var(--border);
+    padding: 2rem;
+    text-align: center;
+    margin: 0 auto;
+    box-shadow: var(--box-shadow);
 }
 
-.add-products form h3{
-   font-size: 2.5rem;
-   text-transform: uppercase;
-   color:var(--black);
-   margin-bottom: 1rem;
+.add-products form h3 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 1rem;
 }
 
-.add-products form .box{
-   width: 100%;
-   margin:1rem 0;
-   font-size: 1.8rem;
-   color:var(--black);
-   border-radius: .5rem;
-   background-color: var(--light-bg);
-   padding:1.2rem 1.4rem;
-   border:var(--border);
+.add-products form .box {
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1.8rem;
+    color: var(--black);
+    border-radius: .5rem;
+    background-color: var(--light-bg);
+    padding: 1.2rem 1.4rem;
+    border: var(--border);
 }
 
-.add-products form textarea{
-   height: 15rem;
-   resize: none;
+.add-products form textarea {
+    height: 15rem;
+    resize: none;
+}
+
+.add-products .image {
+    border: var(--border);
+    width: 100%;
+    height: 200px; /* atau 250px, sesuai kebutuhan */
+    object-fit: cover; /* biar gambar tetap rapi */
+    border-radius: .5rem;
+}
+
+/* Button Group CSS */
+.add-products form .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.add-products form .button-group .btn{
+    flex: 1; /* Membuat kedua tombol memiliki lebar yang sama */
+    padding: 1.2rem 0; /* Sesuaikan padding supaya konsisten */
+    font-size: 1.8rem; /* Ukuran teks tombol */
+    border-radius: .5rem; /* Membuat sudut tombol membulat */
+    text-transform: capitalize; /* Membuat teks pertama kapital */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    box-sizing: border-box; /* Memastikan padding dan border dihitung dalam ukuran tombol */
+    text-align: center;
+    border: none; /* Pastikan tidak ada border yang mengganggu */
 }
 
 .show-products .box-container{
@@ -401,7 +434,8 @@ section{
 
  .update-product form .button-group{
     display: flex;
-    justify-content: space-between; /* Membuat tombol berada dalam satu baris */
+    justify-content: center; /* Membuat tombol berada dalam satu baris */
+    align-items: center;
     gap: 1rem;
     margin-top: 2rem; /* Memberikan jarak antara form dan tombol */
  }
