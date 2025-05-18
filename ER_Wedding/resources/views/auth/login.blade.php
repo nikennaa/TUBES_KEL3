@@ -22,6 +22,14 @@
             <p class="text-danger mt-1" style="font-size: 1.4rem;">{{ $message }}</p>
         @enderror
 
+        {{-- reCAPTCHA --}}
+        <div class="captcha-center">
+            {!! NoCaptcha::display() !!}
+            @error('g-recaptcha-response')
+                <p class="text-danger mt-1" style="font-size: 1.4rem;">{{ $message }}</p>
+            @enderror
+        </div>
+
         <input type="submit" class="btn" value="Login Now">
 
         <p>Don't have an account? <a href="{{ route('register') }}">Register now</a></p>
@@ -49,3 +57,8 @@
     @endif
 </section>
 @endsection
+
+{{-- Tambahkan ini untuk memuat JS reCAPTCHA --}}
+@push('scripts')
+    {!! NoCaptcha::renderJs() !!}
+@endpush

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 class LoginController extends Controller
 {
@@ -18,25 +20,31 @@ class LoginController extends Controller
 
 
     public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+{
+    // Validasi semua input termasuk CAPTCHA
+    $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+        'g-recaptcha-response' => ['required', 'captcha'],
+    ]);
 
-        $remember = $request->has('remember');
+    // Ambil hanya email dan password untuk proses login
+    $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/')->with('success', $remember
-                ? 'Anda telah berhasil login dengan Remember Me aktif!'
-                : 'Anda telah berhasil login!');
-        }
+    $remember = $request->has('remember');
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah!',
-        ]);
+    if (Auth::attempt($credentials, $remember)) {
+        $request->session()->regenerate();
+        return redirect()->intended('/')->with('success', $remember
+            ? 'Anda telah berhasil login dengan Remember Me aktif!'
+            : 'Anda telah berhasil login!');
     }
+
+    return back()->withErrors([
+        'email' => 'Email atau password salah!',
+    ]);
+}
+
 
     public function logout(Request $request)
     {

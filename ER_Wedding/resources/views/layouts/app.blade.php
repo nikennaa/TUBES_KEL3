@@ -16,6 +16,8 @@
     {{--  Page–level extra style  --}}
     @stack('head-extra')
     @yield('css')
+
+    {!! NoCaptcha::renderJs() !!}
 </head>
 <body>
     {{-- ================================================================= --}}
@@ -33,7 +35,6 @@
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
-
 
                     {{-- search icon  --}}
                     <li class="nav-item d-none d-lg-block">
@@ -58,8 +59,6 @@
                         @endif
                     @endauth
 
-
-
                     {{-- Auth buttons / Logout --}}
                     @guest
                         <li class="nav-item">
@@ -69,11 +68,13 @@
                             <a class="btn btn-outline-pink" href="{{ route('register') }}">Daftar</a>
                         </li>
                     @else
-
-                    @auth
-                    @if(auth()->user()->role === 'admin') <li class="nav-item"> <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a> </li>
-                    @endif
-                    @endauth
+                        @auth
+                            @if(auth()->user()->role === 'admin')
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a>
+                                </li>
+                            @endif
+                        @endauth
 
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST" class="d-inline">
@@ -105,6 +106,9 @@
 
     {{-- Vendor JS  --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    {{-- {!! NoCaptcha::renderJs() !!} --}}
+
     @stack('scripts')
     @yield('scripts')
 </body>

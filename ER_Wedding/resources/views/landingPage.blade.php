@@ -150,7 +150,7 @@
             </div>
         @endforeach
     </div>
-{{-- Tambahkan tombol/link View All Products --}}
+<!--Tombol View All Products -->
     <div class="text-center mt-4">
         <a href="{{ route('products.all') }}" class="btn btn-pink btn-lg">View All Products</a>
     </div>
@@ -308,9 +308,4 @@
         }
     });
 </script>
-
-
-
-
 @endsection
-
