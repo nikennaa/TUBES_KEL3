@@ -26,21 +26,17 @@
 
         @if($product->image)
             <div class="image mt-4">
-                <p style="font-size: 1.4rem; color: var(--light-color);">Gambar Saat Ini:</p>
-                <img src="{{ asset('storage/products' . $product->image) }}" alt="Gambar Produk" class="image">
+                <p style="font-size: 1.4rem; color: var(--light-color);">Gambar Yang akan muncul: </p>
+                <img src="{{ asset('pr_img/' . $product->image) }}" alt="Gambar Produk" class="image">
+            </div>
+        @elseif($product->image == null)
+            <div class="image mt-4">
+                <p style="font-size: 1.4rem; color: var(--light-color);">Tidak Ada Gambar</p>
             </div>
         @endif
 
-        <div id="imagePreview" class="mt-2 mb-6">
-            <p id="imageMessage" class="text-sm" style="font-size: 1.4rem; color: var(--light-color);">
-                Preview Gambar Baru:<br>
-                <span>Tidak Ada Gambar</span>
-            </p>
-            <img id="preview" class="image hidden" style="max-width: 100%; height: auto; border-radius: .5rem;" />
-        </div>
-
         <div class="button-group">
-            <a href="{{ route('admin.index') }}" class="option-btn">Kembali</a>
+            <a href="{{ route('admin.index') }}" class="btn orange">Kembali</a>
             <button type="submit" class="btn">Update</button>
         </div>
     </form>

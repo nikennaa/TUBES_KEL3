@@ -16,15 +16,19 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        // Validasi input termasuk reCAPTCHA
+        $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+            'g-recaptcha-response' => ['required', 'captcha'],
         ]);
 
         $remember = $request->has('remember');
+
+        // Ambil hanya email dan password saja untuk proses login
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();

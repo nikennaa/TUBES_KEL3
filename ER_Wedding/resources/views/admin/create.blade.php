@@ -3,7 +3,7 @@
 @section('title', 'Tambah Produk')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backup_admin_style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 @endsection
 
@@ -12,14 +12,21 @@
 <section class="add-products">
     <form method="POST" action="{{ route('admin.store') }}" enctype="multipart/form-data">
         @csrf
+
         <h3>Tambah Produk Baru</h3>
 
-        <input type="text" class="box" required placeholder="Masukkan nama Produk" name="name">
+        <input type="text" name="name" class="box" required placeholder="Masukkan Nama Produk" value="{{ old('name') }}">
 
-        <textarea name="description" class="box" required placeholder="Masukkan Deskripsi Produk" cols="30" rows="10"></textarea>
-        <input type="text" class="box" required placeholder="Masukkan Harga Produk" name="price">
+        <textarea name="description" class="box" required placeholder="Masukkan Deskripsi Produk" cols="30" rows="10">{{ old('description') }}</textarea>
 
-        <input type="file" accept="image/jpg, image/jpeg, image/png" required class="box" name="image" onchange="previewImage(event)">
+        <input type="text" name="price" class="box" required placeholder="Masukkan Harga Produk" value="{{ old('price') }}">
+
+        <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required onchange="previewImage(event)">
+
+        <div class="image mt-4">
+            <p id="imageMessage" style="font-size: 1.4rem; color: var(--light-color);">Tidak Ada Gambar</p>
+            <img id="preview" src="" alt="Preview Gambar Baru" class="image hidden" style="display: none;">
+        </div>
 
         <div class="button-group">
             <a href="{{ route('admin.index') }}" class="btn option-btn">Kembali</a>
@@ -36,13 +43,14 @@
 
         if (file) {
             preview.src = URL.createObjectURL(file);
-            preview.classList.remove('hidden');
-            message.textContent = 'Preview Gambar:';
+            preview.style.display = 'block'; // pastikan gambar tampil
+            message.textContent = 'Preview Gambar Baru:';
         } else {
-            preview.classList.add('hidden');
+            preview.style.display = 'none';
             preview.src = '';
             message.textContent = 'Tidak Ada Gambar';
         }
     }
 </script>
+
 @endsection

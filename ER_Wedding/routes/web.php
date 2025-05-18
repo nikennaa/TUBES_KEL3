@@ -25,6 +25,9 @@ Route::delete('/wishlist/{id}', [LandingPageController::class, 'removeFromWishli
 // Route::get('/search', [LandingPageController::class, 'searchPage'])->name('search.page');
 
 
+
+
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/products', [ProductController::class, 'index'])->name('admin.index');
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.create');

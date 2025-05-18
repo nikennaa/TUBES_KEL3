@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel=');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet');
 
 :root{
    --pink:#e84393;
@@ -63,6 +63,20 @@ section{
    font-size: 4rem;
 }
 
+
+.btn,
+.delete-btn,
+.option-btn{
+   display: inline-block;
+   border-radius: .5rem;
+   margin-top: 1rem;
+   font-size: 1.8rem;
+   color:var(--white);
+   cursor: pointer;
+   padding:1rem 3rem;
+   text-transform: capitalize;
+}
+
 .message{
    position: sticky;
    top:0;
@@ -102,6 +116,25 @@ section{
    background-color: var(--white);
    border-radius: .5rem;
    text-transform: capitalize;
+}
+
+.btn{
+   background-color: var(--pink);
+}
+
+
+.delete-btn{
+   background-color: var(--red);
+}
+
+.option-btn{
+   background-color: var(--orange);
+}
+
+.btn:hover,
+.delete-btn:hover,
+.option-btn:hover{
+   background-color: var(--black);
 }
 
 @keyframes fadeIn{
@@ -290,64 +323,68 @@ section{
     width: 100%;
 }
 
-.show-products .box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    align-items: stretch; /* pastikan grid items stretch tinggi-nya */
-    max-width: 1000px;
-    margin: 0 auto;
+.add-products form .button-group .btn .option-btn{
+    flex: 1; /* Membuat kedua tombol memiliki lebar yang sama */
+    padding: 1.2rem 0; /* Sesuaikan padding supaya konsisten */
+    font-size: 1.8rem; /* Ukuran teks tombol */
+    border-radius: .5rem; /* Membuat sudut tombol membulat */
+    text-transform: capitalize; /* Membuat teks pertama kapital */
+    display: inline-flex;
     justify-content: center;
-}
-
-
-.show-products .box-container .box {
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    box-sizing: border-box; /* Memastikan padding dan border dihitung dalam ukuran tombol */
     text-align: center;
-    padding: 2rem;
-    border: var(--border);
-    background-color: #ffe6f0;
-    box-shadow: var(--box-shadow);
-    border-radius: 0.5rem;
-    position: relative;
+    border: none; /* Pastikan tidak ada border yang mengganggu */
 }
 
-.show-products .box-container .box .image {
-    height: 200px;
-    margin-bottom: 0.5rem;
+.show-products .box-container{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 30rem);
+   gap:1.5rem;
+   align-items: flex-start;
+   max-width: 1200px;
+   margin: 0 auto;
+   justify-content: center;
 }
 
-.show-products .box img {
-    border: var(--border);
-    width: 100%;
-    height: 100%; /* isi penuh height container */
-    object-fit: cover;
-    border-radius: 0.5rem;
-    display: block;
-    margin-top: 0.5rem;
+.show-products .box-container .box{
+   text-align: center;
+   padding:2rem;
+   border:var(--border);
+   background-color: #ffe6f0;
+   box-shadow: var(--box-shadow);
+   border-radius: .5rem;
+   position: relative;
 }
 
-.show-products .box-container .box .price {
-    background-color: var(--pink);
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    border-radius: 0.5rem;
-    color: var(--white);
-    padding: 1rem;
-    font-size: 2rem;
+.show-products .box-container .box .image{
+   height: 30rem;
+   margin-bottom: .5rem;
 }
 
-.show-products .box-container .box .name {
-    margin: 1rem 0;
-    font-size: 2rem;
-    color: var(--black);
+.show-products .box-container .box .price{
+   background-color: var(--pink);
+   position: absolute;
+   top:1rem; left:1rem;
+   border-radius: .5rem;
+   color:var(--white);
+   padding:1rem;
+   font-size: 2rem;
 }
 
-.show-products .box-container .box .details {
-    line-height: 1.5;
-    color: var(--light-color);
-    font-size: 1.5rem;
-    padding: 0.5rem 0;
+.show-products .box-container .box .name{
+   margin:1rem 0;
+   font-size: 2rem;
+   color:var(--black);
+}
+
+.show-products .box-container .box .details{
+   line-height: 1.5;
+   color:var(--light-color);
+   font-size: 1.5rem;
+   padding:.5rem 0;
 }
 
 .update-product form{
@@ -401,7 +438,12 @@ section{
     align-items: center;
     gap: 1rem;
     margin-top: 2rem; /* Memberikan jarak antara form dan tombol */
+ }
 
+ .update-product form .button-group .btn,
+ .update-product form .button-group .option-btn {
+    width: 48%; /* Membuat kedua tombol memiliki lebar hampir sama */
+ }
 
 .placed-orders .box-container{
    display: grid;
@@ -509,6 +551,30 @@ section{
 .messages .box-container .box p span{
    color:var(--pink);
 }
+
+.show-products .box img {
+    width: 100%;
+    height: 200px; /* atau 250px, sesuai kebutuhan */
+    object-fit: cover; /* biar gambar tetap rapi */
+    border-radius: .5rem; /* opsional biar sudutnya bulat */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* media queries  */
 
@@ -621,7 +687,14 @@ input[type="submit"]:hover {
 }
 
 /* Button Styling for Table */
-.booking-list
+.booking-list .btn {
+   padding: 8px 15px;
+   background-color: var(--pink);
+   color: white;
+   text-decoration: none;
+   border-radius: 4px;
+   transition: background-color 0.3s ease;
+}
 
 .booking-list .btn:hover {
    background-color: var(--red);
@@ -704,7 +777,26 @@ table tr:hover {
    background-color: var(--light-white);
 }
 
-/* Tombol khusus
+/* Tombol */
+.btn {
+   display: inline-block;
+   padding: 0.8rem 2rem;
+   margin-top: 0.5rem;
+   text-align: center;
+   border-radius: 8px;
+   text-decoration: none;
+   font-size: 1.6rem;
+   cursor: pointer;
+   color: var(--white);
+   background-color: var(--pink);
+   transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+   background-color: var(--black);
+}
+
+/* Tombol khusus */
 .add-new-btn {
    background-color: var(--orange);
    font-size: 1.8rem;
@@ -729,7 +821,7 @@ table tr:hover {
 
 .delete-btn:hover {
    background-color: var(--black);
-} */
+}
 
 /* Booking List Container - untuk menata judul, tombol dan tabel */
 .booking-list {
@@ -754,6 +846,24 @@ table tr:hover {
    color: var(--black);
    text-align: left; /* Menyusun judul di sebelah kiri */
    margin-bottom: 1.5rem; /* Memberikan jarak antara judul dan tombol */
+}
+
+.wedding-booking-form .btn {
+   display: inline-block;
+   padding: 1rem 3rem;
+   font-size: 1.8rem;
+   color: var(--white);
+   background-color: var(--pink);
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   text-transform: capitalize;
+   margin-top: 1.5rem; /* Memberikan jarak antara form dan tombol */
+   transition: background-color 0.3s ease;
+}
+
+.wedding-booking-form .btn:hover {
+   background-color: var(--black); /* Warna tombol saat hover */
 }
 
 
@@ -796,64 +906,3 @@ form label {
 
 
 
-
-
-
-/* Base button */
-.btn {
-   display: inline-block;
-   width: 100%;
-   padding: 1rem 3rem;
-   margin-top: 1rem;
-   font-size: 1.8rem;
-   text-align: center;
-   border-radius: .5rem;
-   text-decoration: none;
-   text-transform: capitalize;
-   font-family: 'Playfair Display', sans-serif;
-   cursor: pointer;
-   color: var(--white);
-   background-color: var(--pink);
-   transition: background-color 0.3s ease;
-   border: none;
-    color: var(--white) !important;
-}
-
-/* Hover default */
-.btn:hover {
-   background-color: var(--black);
-}
-
-/* Modifier: Option Button */
-.btn.orange {
-   background-color: var(--orange);
-}
-.btn.orange:hover {
-   background-color: var(--black);
-}
-
-/* Modifier: Delete Button */
-.btn.delete {
-   background-color: var(--red);
-}
-.btn.delete:hover {
-   background-color: var(--black);
-}
-
-/* Modifier: Edit Button */
-.btn.edit {
-   background-color: var(--orange);
-}
-.btn.edit:hover {
-   background-color: var(--black);
-}
-
-/* Modifier: Add New Button */
-.btn.add-new {
-   background-color: var(--orange);
-}
-.btn.add-new:hover {
-   background-color: var(--black);
-}
-
- }

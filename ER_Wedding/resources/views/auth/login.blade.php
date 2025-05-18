@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
 <section class="form-container">
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -19,6 +20,13 @@
 
         <input type="password" name="password" class="box" placeholder="Enter your password" required>
         @error('password')
+            <p class="text-danger mt-1" style="font-size: 1.4rem;">{{ $message }}</p>
+        @enderror
+
+        {{-- Tambahkan NoCaptcha di sini --}}
+        {!! NoCaptcha::renderJs() !!}
+        {!! NoCaptcha::display() !!}
+        @error('g-recaptcha-response')
             <p class="text-danger mt-1" style="font-size: 1.4rem;">{{ $message }}</p>
         @enderror
 

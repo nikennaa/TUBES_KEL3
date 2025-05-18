@@ -80,7 +80,7 @@
                 @forelse($resultProducts as $product)
                     <div class="col-md-4">
                         <div class="card product-card h-100">
-                            <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
+                            <img src="{{ asset('pr_img/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title mb-1">{{ $product->name }}</h5>
                                 <p class="small text-muted mb-2">{{ Str::limit($product->description, 80) }}</p>
@@ -120,30 +120,31 @@
         @foreach($latestProducts as $product)
             <div class="col-md-4">
                 <div class="card product-card h-100">
-                    <img src="{{ asset('products/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top" />
+                    <img src="{{ asset('pr_img/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top" />
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title mb-1">{{ $product->name }}</h5>
                         <p class="small text-muted mb-2">{{ Str::limit($product->description,80) }}</p>
                         <div class="product-price mb-3">Rp{{ number_format($product->price,0,',','.') }}</div>
-                        <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto vstack gap-3">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="name" value="{{ $product->name }}">
-                            <input type="hidden" name="description" value="{{ $product->description }}">
-                            <input type="hidden" name="price" value="{{ $product->price }}">
-                            <input type="hidden" name="image" value="{{ $product->image }}">
-                           <div class="d-grid gap-2">
+                       <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto vstack gap-3">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="name" value="{{ $product->name }}">
+                        <input type="hidden" name="description" value="{{ $product->description }}">
+                        <input type="hidden" name="price" value="{{ $product->price }}">
+                        <input type="hidden" name="image" value="{{ $product->image }}">
+
+                        <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-outline-pink">Add to Wishlist</button>
                             <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-pink">View Product</a>
+
+                            @auth
+                                @if(auth()->user()->role === 'buyer')
+                                    <a href="{{ route('wedding.index', $product->id) }}" class="btn btn-outline-pink">Book Now</a>
+                                @endif
+                            @endauth
                         </div>
-                        @auth
-                     @if(auth()->user()->role === 'buyer')
-                         <div class="d-grid gap-2">
-                         <a href="{{ route('wedding.index', $product->id) }}" class="btn btn-outline-pink">Book Now</a>
-                     </div>
-                     @endif
-                 @endauth
-                        </form>
+                    </form>
+
 
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 @section('title', 'Produk')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backup_admin_style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 @endsection
 
@@ -22,7 +22,7 @@
         <p style="font-size: 1.6rem; color: var(--light-color); max-width: 700px; margin: 0 auto;">
             Selamat datang di halaman manajemen produk. Di sini kamu bisa melihat daftar produk, memperbarui, atau menghapus produk yang ada.
         </p>
-        <a href="{{ route('admin.create') }}" class="btn">Tambah Produk</a>
+            <a href="{{ route('admin.create') }}" class="btn orange">Tambah Produk</a>
     </div>
 </section>
 
@@ -32,7 +32,7 @@
         @forelse($products as $product)
             <div class="box">
                 <div class="price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
-                <img class="image" src="{{ asset('storage/products' . $product->image) }}" alt="{{ $product->name }}">
+                <img class="image" src="{{ asset('pr_img/' . $product->image) }}" alt="{{ $product->name }}">
                 <div class="name">{{ $product->name }}</div>
                 <div class="description">{{ Str::limit($product->description, 100) }}</div>
                 <a href="{{ route('admin.edit', $product) }}" class="option-btn">Update</a>
