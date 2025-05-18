@@ -75,3 +75,6 @@ Route::middleware(['auth'])->group(function () {
     // Route untuk delete profile
     Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Route untuk menampilkan semua produk tanpa batasan role
+Route::get('/all-products', [ProductController::class, 'allProducts'])->name('products.all');

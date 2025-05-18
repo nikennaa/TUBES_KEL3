@@ -16,9 +16,10 @@ class ProductController extends Controller
    // Misalnya di ProductController
     public function index()
     {
-        // Ambil semua produk
-        $products = Product::all();
-        return view('admin.index', compact('products'));
+    // Ambil 3 produk terbaru berdasarkan tanggal dibuat
+    $products = Product::orderBy('created_at', 'desc')->take(3)->get();
+
+    return view('admin.index', compact('products'));
     }
 
     /**
@@ -114,4 +115,23 @@ class ProductController extends Controller
         session()->flash('success', 'Produk berhasil dihapus!');
         return redirect()->route('admin.index');
     }
+
+    public function allProducts(Request $request)
+    {
+        $query = Product::query();
+
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->min_price);
+        }
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
+        $products = $query->get();
+
+        // Kirim ke view all_products.blade.php
+        return view('products.all_products', compact('products'));
+    }
+
+
 }

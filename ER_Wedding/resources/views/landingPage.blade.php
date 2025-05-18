@@ -120,7 +120,7 @@
         @foreach($latestProducts as $product)
             <div class="col-md-4">
                 <div class="card product-card h-100">
-                    <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
+                    <img src="{{ asset('products/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top" />
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title mb-1">{{ $product->name }}</h5>
                         <p class="small text-muted mb-2">{{ Str::limit($product->description,80) }}</p>
@@ -150,7 +150,15 @@
             </div>
         @endforeach
     </div>
+{{-- Tambahkan tombol/link View All Products --}}
+    <div class="text-center mt-4">
+        <a href="{{ route('products.all') }}" class="btn btn-pink btn-lg">View All Products</a>
+    </div>
 
+    <!-- Tambahkan ini di bagian landing page tempat kamu mau menampilkan logo WA -->
+<a href="https://wa.me/6287809922331" target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp Admin">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-button" />
+</a>
 </section>
 @endif
 
