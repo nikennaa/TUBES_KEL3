@@ -35,6 +35,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.edit');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('admin.update');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.destroy');
+
+
 });
 
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
@@ -62,6 +64,8 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
     Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [SuperAdminController::class, 'destroy'])->name('destroy');
     Route::get('/fitur', [SuperAdminController::class, 'index'])->name('fitur');
+
+    
 });
 
 // User Profile routes
@@ -77,10 +81,15 @@ Route::middleware(['auth'])->group(function () {
 
     // Route untuk delete profile
     Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 // Route untuk menampilkan semua produk tanpa batasan role
 Route::get('/all-products', [ProductController::class, 'allProducts'])->name('products.all');
 
-// Route untuk menampilkan produk yang sudah di order
-Route::get('/my-orders', [WeddingBookingController::class, 'myOrders'])->name('orders.mine');
+Route::get('/my-orders', [WeddingBookingController::class, 'myOrders'])->name('my.orders');
+Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('superadmin.')->group(function () {
+    Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('index');
+    Route::get('/orders', [SuperAdminController::class, 'orders'])->name('orders');
+    // route lain...
+});

@@ -52,7 +52,7 @@
 
                             {{-- My Orders button --}}
                             <li class="nav-item">
-                                <a href="{{ route('orders.mine') }}" class="er-btn-outline er-wishlist-btn">
+                                <a href="{{ route('my.orders') }}" class="er-btn-outline er-wishlist-btn">
                                     <i class="fa fa-clipboard-list me-1"></i> My Orders
                                 </a>
                             </li>
@@ -82,6 +82,10 @@
                             @if(auth()->user()->role === 'admin')
                                 <li class="nav-item">
                                     <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-pink me-2" href="{{ route('superadmin.orders') }}">Order</a>
                                 </li>
                             @endif
                         @endauth
