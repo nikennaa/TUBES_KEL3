@@ -25,7 +25,9 @@
 
         {{-- Tambahkan NoCaptcha di sini --}}
         {!! NoCaptcha::renderJs() !!}
-        {!! NoCaptcha::display() !!}
+        <div class="captcha-center">
+            {!! NoCaptcha::display() !!}
+        </div>
         @error('g-recaptcha-response')
             <p class="text-danger mt-1" style="font-size: 1.4rem;">{{ $message }}</p>
         @enderror
