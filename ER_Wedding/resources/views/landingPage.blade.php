@@ -80,7 +80,7 @@
                 @forelse($resultProducts as $product)
                     <div class="col-md-4">
                         <div class="card product-card h-100">
-                            <img src="{{ asset('pr_img/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" />
+                           <img class="image" src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title mb-1">{{ $product->name }}</h5>
                                 <p class="small text-muted mb-2">{{ Str::limit($product->description, 80) }}</p>
