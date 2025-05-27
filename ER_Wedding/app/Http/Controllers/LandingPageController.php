@@ -15,7 +15,7 @@ class LandingPageController extends Controller
           $search_box = $request->input('search_box');
 
     $resultProducts = collect(); // kosongkan default pencarian
-    $latestProducts = Product::latest()->take(6)->get(); // ambil produk terbaru
+    $latestProducts = Product::latest()->take(3)->get(); // ambil produk terbaru
 
     if ($search_box) {
         $resultProducts = Product::where('name', 'LIKE', '%' . $search_box . '%')->get();

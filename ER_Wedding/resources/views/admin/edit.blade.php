@@ -27,7 +27,8 @@
         @if($product->image)
             <div class="image mt-4">
                 <p style="font-size: 1.4rem; color: var(--light-color);">Gambar Yang akan muncul: </p>
-                <img src="{{ asset('pr_img/' . $product->image) }}" alt="Gambar Produk" class="image">
+                <!-- <img src="{{ asset('pr_img/' . $product->image) }}" alt="Gambar Produk" class="image"> -->
+                <img class="image" src="{{ asset('storage/products/' . $product->image) }}" alt="Gambar Produk">
             </div>
         @elseif($product->image == null)
             <div class="image mt-4">

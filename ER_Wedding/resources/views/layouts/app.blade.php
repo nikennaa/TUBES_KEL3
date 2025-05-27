@@ -35,13 +35,8 @@
 
             <div id="mainNav" class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
 
-                    {{-- search icon  --}}
-                    <li class="nav-item d-none d-lg-block">
-                        <a href="#search" class="nav-link"><i class="fas fa-search"></i></a>
-                    </li>
 
                     {{-- Wishlist button (buyers only) --}}
                     @auth

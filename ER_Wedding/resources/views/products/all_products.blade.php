@@ -46,7 +46,7 @@
                         {{-- Gambar seragam --}}
                         <div class="img-fixed">
                             @if($product->image)
-                                <img src="{{ asset('storage/products/' . $product->image) }}"
+                               <img class="image" src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}"
                                      class="card-img-top object-cover"
                                      alt="{{ $product->name }}">
                             @else

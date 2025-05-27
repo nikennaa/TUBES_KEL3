@@ -116,42 +116,52 @@
 <!-- LATEST PRODUCTS -->
 <section class="container py-5">
     <h2 class="section-title">Latest Products</h2>
-    <div class="row g-4">
-        @foreach($latestProducts as $product)
-            <div class="col-md-4">
-                <div class="card product-card h-100">
-                    <img src="{{ asset('pr_img/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top" />
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title mb-1">{{ $product->name }}</h5>
-                        <p class="small text-muted mb-2">{{ Str::limit($product->description,80) }}</p>
-                        <div class="product-price mb-3">Rp{{ number_format($product->price,0,',','.') }}</div>
-                       <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto vstack gap-3">
-                        @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <input type="hidden" name="name" value="{{ $product->name }}">
-                        <input type="hidden" name="description" value="{{ $product->description }}">
-                        <input type="hidden" name="price" value="{{ $product->price }}">
-                        <input type="hidden" name="image" value="{{ $product->image }}">
-
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-outline-pink">Add to Wishlist</button>
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-pink">View Product</a>
-
-                            @auth
-                                @if(auth()->user()->role === 'buyer')
-                                    <a href="{{ route('wedding.index', $product->id) }}" class="btn btn-outline-pink">Book Now</a>
-                                @endif
-                            @endauth
+            <div class="row">
+            @foreach ($latestProducts as $product)
+                <div class="col-md-4 d-flex">
+                    <div class="card w-100 d-flex flex-column shadow-sm">
+                        {{-- Gambar seragam --}}
+                        <div class="img-fixed">
+                            @if($product->image)
+                               <img class="image" src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}"
+                                     class="card-img-top object-cover"
+                                     alt="{{ $product->name }}">
+                            @else
+                                <div class="bg-light text-center py-5">No Image</div>
+                            @endif
                         </div>
 
-                    </form>
+                        {{-- Konten --}}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text text-muted">{{ Str::limit($product->description, 80) }}</p>
+                            <p class="card-text fw-bold text-pink">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
 
+                            <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="name" value="{{ $product->name }}">
+                                <input type="hidden" name="description" value="{{ $product->description }}">
+                                <input type="hidden" name="price" value="{{ $product->price }}">
+                                <input type="hidden" name="image" value="{{ $product->image }}">
 
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-outline-pink">Add to Wishlist</button>
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-pink">View Product</a>
+
+                                    @auth
+                                        @if(auth()->user()->role === 'buyer')
+                                            <a href="{{ route('wedding.index', $product->id) }}" class="btn btn-outline-pink">Book Now</a>
+                                        @endif
+                                    @endauth
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
+            @endforeach
+        </div>
 <!--Tombol View All Products -->
     <div class="text-center mt-4">
         <a href="{{ route('products.all') }}" class="btn btn-pink btn-lg">View All Products</a>
@@ -274,15 +284,6 @@
 @endauth
 
 
-<!-- FOOTER -->
-<footer>
-    <div class="container text-center">
-        <p class="mb-2">&copy; {{ date('Y') }} ER Wedding. All rights reserved.</p>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a>
-        </div>
-    </div>
-</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
