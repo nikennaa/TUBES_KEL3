@@ -82,7 +82,8 @@
                         @auth
                             @if(auth()->user()->role === 'admin')
                                 <li class="nav-item">
-                                    <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a>
+                                    <a class="btn btn-outline-pink me-2" href="{{ route('products.index') }}">Products (Admin)</a>
+
                                 </li>
 
                                 <li class="nav-item">

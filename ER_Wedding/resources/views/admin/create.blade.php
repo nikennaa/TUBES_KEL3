@@ -29,7 +29,6 @@
         </div>
 
         <div class="button-group">
-            <a href="{{ route('admin.index') }}" class="btn option-btn">Kembali</a>
             <button type="submit" class="btn">Simpan</button>
         </div>
     </form>

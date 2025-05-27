@@ -64,6 +64,8 @@
 </head>
 <body>
     <div class="container">
+            <a href="{{ route('landingPage') }}" class="btn btn-secondary">← Back</a>
+
         <h1>Dashboard Superadmin</h1>
 
         <a href="{{ route('superadmin.create') }}" class="button">+ Tambah User</a>

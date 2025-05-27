@@ -28,7 +28,7 @@ Route::delete('/wishlist/{id}', [LandingPageController::class, 'removeFromWishli
 
 
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/products', [ProductController::class, 'index'])->name('admin.index');
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.create');
     Route::post('/products', [ProductController::class, 'store'])->name('admin.store');

@@ -97,7 +97,7 @@
                                     <div class="d-grid gap-2">
                                         <button type="submit" class="btn btn-outline-pink">Add to Wishlist</button>
                                         <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-pink">View Product</a>
-                                    </div>  
+                                    </div>
                                 </form>
                             </div>
                         </div>
