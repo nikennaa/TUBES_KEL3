@@ -80,6 +80,11 @@
                                 <li class="nav-item">
                                     <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-pink me-2" href="{{ route('superadmin.orders') }}">Orders Customer</a>
+                                </li>
+
                             @endif
                         @endauth
 

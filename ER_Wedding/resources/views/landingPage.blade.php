@@ -239,55 +239,43 @@
 
 
 @auth
-@if((auth()->user()->role === 'superAdmin' || auth()->user()->role === 'admin') && isset($dashboardStats))
-<section class="admin-dashboard">
-    <h2>📊 Super Admin Overview</h2>
-    <div class="dashboard-cards">
+    @if((auth()->user()->role === 'superAdmin' || auth()->user()->role === 'admin') && isset($dashboardStats))
+    <section class="admin-dashboard">
+        <h2>📊 Super Admin Overview</h2>
+        <div class="dashboard-cards">
 
-
-        <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Product</h4>
-                    <p>Last 30 days</p>
+            <div class="card-box">
+                <div class="card-header">
+                    <div>
+                        <h4>Total Product</h4>
+                        <p>Last 30 days</p>
+                    </div>
+                    <span class="icon">🛒</span>
                 </div>
-                <span class="icon">🛒</span>
+                <div class="card-value">{{ $dashboardStats['numberOfProducts'] }}</div>
+                <a href="{{ route('products.all') }}" class="btn btn-primary">Lihat Semua Produk</a>
             </div>
-            <div class="card-value">{{ $dashboardStats['numberOfProducts'] }}</div>
-        </div>
 
-        <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Customers</h4>
-                    <p>Last 30 days</p>
+            <div class="card-box">
+                <div class="card-header">
+                    <div>
+                        <h4>Total Customers</h4>
+                        <p>Last 30 days</p>
+                    </div>
+                    <span class="icon">👥</span>
                 </div>
-                <span class="icon">👥</span>
+                <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
+                <a href="{{ url('/superadmin/fitur') }}" class="btn btn-primary">
+                    Lihat Total Customers
+                </a>
             </div>
-            <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
-        </div>
 
-          <div class="card-box">
-            <div class="card-header">
-                <div>
-                    <h4>Total Admins</h4>
-                    <p>Last 30 days</p>
-                </div>
-                <span class="icon">👥</span>
-            </div>
-            <div class="card-value">{{ $dashboardStats['numberOfAdmins'] }}</div>
         </div>
-
-    </div>
-</section>
-@endif
+    </section>
+    @endif
 @endauth
 
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -311,4 +299,5 @@
         }
     });
 </script>
+
 @endsection

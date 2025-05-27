@@ -54,6 +54,7 @@ Route::get('/wedding/bookings/destroy/{id}', [WeddingBookingController::class, '
 
 });
 
+
 Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('superadmin.')->group(function () {
     Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('index');
     Route::get('/create', [SuperAdminController::class, 'create'])->name('create');
@@ -62,6 +63,10 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
     Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [SuperAdminController::class, 'destroy'])->name('destroy');
     Route::get('/fitur', [SuperAdminController::class, 'index'])->name('fitur');
+    Route::get('/fitur/admins', [SuperAdminController::class, 'listAdmins'])->name('fitur.admins');
+    Route::get('/fitur/customers', [SuperAdminController::class, 'listCustomers'])->name('fitur.customers');
+
+
 });
 
 // User Profile routes
@@ -84,3 +89,9 @@ Route::get('/all-products', [ProductController::class, 'allProducts'])->name('pr
 
 // Route untuk menampilkan produk yang sudah di order
 Route::get('/my-orders', [WeddingBookingController::class, 'myOrders'])->name('orders.mine');
+
+Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('superadmin.')->group(function () {
+    Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('index');
+    Route::get('/orders', [SuperAdminController::class, 'orders'])->name('orders');
+    // route lain...
+});
