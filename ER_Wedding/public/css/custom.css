@@ -1,4 +1,19 @@
 /* custom.css */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
 :root {
     --pink: #e83e8c;
     --dark: #343434;

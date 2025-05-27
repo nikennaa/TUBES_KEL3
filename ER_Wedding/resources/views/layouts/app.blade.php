@@ -33,13 +33,8 @@
 
             <div id="mainNav" class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
 
-                    {{-- search icon  --}}
-                    <li class="nav-item d-none d-lg-block">
-                        <a href="#search" class="nav-link"><i class="fas fa-search"></i></a>
-                    </li>
+
 
                     {{-- Wishlist button (buyers only) --}}
                     @auth
@@ -47,9 +42,10 @@
                             <li class="nav-item">
                                 <a href="{{ route('wishlist.index') }}" class="er-btn-outline er-wishlist-btn">
                                     <i class="fa fa-heart me-1"></i> Wishlist
+
                                 </a>
                             </li>
-
+                            <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
                             {{-- My Orders button --}}
                             <li class="nav-item">
                                 <a href="{{ route('my.orders') }}" class="er-btn-outline er-wishlist-btn">
@@ -57,7 +53,12 @@
                                 </a>
                             </li>
 
-                            {{-- Cart button --}}   
+                             {{-- search icon  --}}
+                    <li class="nav-item d-none d-lg-block">
+                        <a href="#search" class="nav-link"><i class="fas fa-search"></i></a>
+                    </li>
+
+                            {{-- Cart button --}}
 
 
                             {{-- Link ke Profil --}}
@@ -112,14 +113,17 @@
     {{-- ================================================================= --}}
     {{--                              FOOTER                              --}}
     {{-- ================================================================= --}}
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center small">
-            &copy; {{ date('Y') }} ER Wedding. All rights reserved.
+<!-- Pindahkan ini ke app.blade.php -->
+    <footer class="bg-dark text-white mt-auto py-3">
+        <div class="container text-center">
+            <p class="mb-2">&copy; {{ date('Y') }} ER Wedding. All rights reserved.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#" class="text-white">Privacy</a> ·
+                <a href="#" class="text-white">Terms</a> ·
+                <a href="#" class="text-white">Contact</a>
+            </div>
         </div>
     </footer>
-
-    {{-- Vendor JS  --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     {{-- {!! NoCaptcha::renderJs() !!} --}}
 

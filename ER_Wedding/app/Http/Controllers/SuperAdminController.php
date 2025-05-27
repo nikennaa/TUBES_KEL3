@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\WeddingBooking;
+use App\Models\Produk;    // pastikan model Produk ada di App\Models
 
 
 class SuperAdminController extends Controller
@@ -98,5 +99,17 @@ public function destroyOrder($id)
     WeddingBooking::findOrFail($id)->delete();
     return redirect()->route('superadmin.orders')->with('success', 'Order berhasil dihapus.');
 }
+
+public function landingPage()
+{
+    $dashboardStats = [
+        'numberOfProducts' => Produk::count(),
+        'numberOfUsers' => User::count(),
+        'numberOfAdmins' => User::where('role', 'admin')->count(),
+    ];
+
+    return view('landingpage', compact('dashboardStats'));
+}
+
 
 }

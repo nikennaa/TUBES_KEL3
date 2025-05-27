@@ -65,7 +65,7 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
     Route::delete('/delete/{id}', [SuperAdminController::class, 'destroy'])->name('destroy');
     Route::get('/fitur', [SuperAdminController::class, 'index'])->name('fitur');
 
-    
+
 });
 
 // User Profile routes
@@ -93,3 +93,5 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
     Route::get('/orders', [SuperAdminController::class, 'orders'])->name('orders');
     // route lain...
 });
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');

@@ -244,6 +244,7 @@
                 <span class="icon">🛒</span>
             </div>
             <div class="card-value">{{ $dashboardStats['numberOfProducts'] }}</div>
+            <a href="{{ route('products.index') }}" class="btn btn-primary">Lihat Semua Produk</a>
         </div>
 
         <div class="card-box">
@@ -255,6 +256,9 @@
                 <span class="icon">👥</span>
             </div>
             <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
+            <a href="{{ url('/superadmin/fitur') }}" class="btn btn-primary">
+    Lihat Total Customers
+</a>
         </div>
 
           <div class="card-box">
@@ -266,25 +270,21 @@
                 <span class="icon">👥</span>
             </div>
             <div class="card-value">{{ $dashboardStats['numberOfAdmins'] }}</div>
-        </div>
+            <a href="{{ url('/superadmin/fitur') }}" class="btn btn-primary">
+    Lihat Total Admin
+</a>
 
+        </div>
     </div>
 </section>
 @endif
 @endauth
 
 
-<!-- FOOTER -->
-<footer>
-    <div class="container text-center">
-        <p class="mb-2">&copy; {{ date('Y') }} ER Wedding. All rights reserved.</p>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a>
-        </div>
-    </div>
-</footer>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
 
