@@ -96,3 +96,8 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
 });
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::middleware(['auth', 'role:admin,superAdmin'])->prefix('superadmin')->name('superadmin.')->group(function () {
+    Route::get('orders', [SuperAdminController::class, 'orders'])->name('orders');
+    Route::put('orders/{id}/update-status', [SuperAdminController::class, 'updateOrderStatus'])->name('orders.updateStatus');
+    Route::delete('orders/{id}', [SuperAdminController::class, 'destroyOrder'])->name('orders.destroy');
+});
