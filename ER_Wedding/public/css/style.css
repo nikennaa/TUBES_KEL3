@@ -1121,6 +1121,22 @@ section{
 
 }
 
+.btn.pink {
+    background-color: #ec4899; /* pink cerah */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(236, 72, 153, 0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+}
+.btn.pink:hover {
+    background-color: #db2777; /* pink lebih gelap saat hover */
+    box-shadow: 0 6px 14px rgba(219, 39, 119, 0.5);
+}
+
 .captcha-center {
     display: flex;
     justify-content: center;
