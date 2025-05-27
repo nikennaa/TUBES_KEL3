@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\WeddingBooking;
+use App\Models\Produk;    // pastikan model Produk ada di App\Models
+
 
 class SuperAdminController extends Controller
 {
@@ -68,4 +71,45 @@ class SuperAdminController extends Controller
         User::findOrFail($id)->delete();
         return redirect()->route('superadmin.index')->with('success', 'User berhasil dihapus.');
     }
+
+public function orders()
+{
+    $bookings = WeddingBooking::with(['user', 'product'])->get();
+    return view('superadmin.orders.index', compact('bookings'));
+}
+
+
+public function updateOrderStatus(Request $request, $id)
+{
+    $booking = WeddingBooking::findOrFail($id);
+    $booking->status = $request->input('status');
+    $booking->save();
+
+    return redirect()->route('superadmin.orders')->with('success', 'Status updated.');
+}
+
+public function editOrder($id)
+{
+    $booking = WeddingBooking::findOrFail($id);
+    return view('superadmin.orders.edit', compact('booking'));
+}
+
+public function destroyOrder($id)
+{
+    WeddingBooking::findOrFail($id)->delete();
+    return redirect()->route('superadmin.orders')->with('success', 'Order berhasil dihapus.');
+}
+
+public function landingPage()
+{
+    $dashboardStats = [
+        'numberOfProducts' => Produk::count(),
+        'numberOfUsers' => User::count(),
+        'numberOfAdmins' => User::where('role', 'admin')->count(),
+    ];
+
+    return view('landingpage', compact('dashboardStats'));
+}
+
+
 }
