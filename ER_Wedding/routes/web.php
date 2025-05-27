@@ -28,16 +28,15 @@ Route::delete('/wishlist/{id}', [LandingPageController::class, 'removeFromWishli
 
 
 
-    Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/products', [ProductController::class, 'index'])->name('admin.index');
-    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.create');
-    Route::post('/products', [ProductController::class, 'store'])->name('admin.store');
-    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.edit');
-    Route::put('/products/{product}', [ProductController::class, 'update'])->name('admin.update');
-    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.destroy');
-
-
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/products', [ProductController::class, 'index'])->name('index');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('create');
+    Route::post('/products', [ProductController::class, 'store'])->name('store');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('edit');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('update');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('destroy');
 });
+
 
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::view('/bantuan', 'help')->name('help');
@@ -64,6 +63,8 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
     Route::put('/update/{id}', [SuperAdminController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [SuperAdminController::class, 'destroy'])->name('destroy');
     Route::get('/fitur', [SuperAdminController::class, 'index'])->name('fitur');
+    Route::get('/fitur/admins', [SuperAdminController::class, 'listAdmins'])->name('fitur.admins');
+    Route::get('/fitur/customers', [SuperAdminController::class, 'listCustomers'])->name('fitur.customers');
 
 
 });
@@ -95,3 +96,4 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
 });
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
