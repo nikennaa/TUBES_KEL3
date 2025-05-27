@@ -47,6 +47,7 @@ public function store(Request $request)
     ]);
 
     WeddingBooking::create([
+        'user_id' => auth()->id(), // ✅ INI WAJIB!
         'product_id' => $request->product_id,
         'groom_name' => $request->groom_name,
         'bride_name' => $request->bride_name,
@@ -61,10 +62,12 @@ public function store(Request $request)
         'payment_method' => $request->payment_method,
         'notes' => $request->notes,
         'services' => json_encode($request->services),
+        'status' => 'belum lunas', // optional, karena default-nya sudah 'belum lunas'
     ]);
 
-    return redirect()->route('wedding.index')->with('success', 'Wedding booked successfully!');
+    return redirect()->route('orders.mine')->with('success', 'Wedding booked successfully!');
 }
+
 
 
     // Menampilkan form untuk mengedit booking yang ada
@@ -138,13 +141,12 @@ public function store(Request $request)
         return redirect()->route('wedding.index')->with('success', 'Booking deleted successfully!');
     }
 
-    public function myOrders()
-    {
-        $bookings = WeddingBooking::where('id', auth()->id())->get();
-        $products = Product::all();
+public function myOrders()
+{
+    $bookings = WeddingBooking::where('id', auth()->id())->get();
+    $products = Product::all(); // ✅ tambahkan ini
 
-        return view('booking.my_orders', compact('bookings', 'products'));
-
-    }
+    return view('booking.index', compact('bookings', 'products'));
+}
 
 }

@@ -151,7 +151,7 @@
 
                                     @auth
                                         @if(auth()->user()->role === 'buyer')
-                                            <a href="{{ route('wedding.index', $product->id) }}" class="btn btn-outline-pink">Book Now</a>
+                                            <a href="{{ route('wedding.create', $product->id) }}" class="btn btn-outline-pink">Book Now</a>
                                         @endif
                                     @endauth
                                 </div>

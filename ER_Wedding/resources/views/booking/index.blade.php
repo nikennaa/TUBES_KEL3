@@ -17,10 +17,6 @@
 
 <section class="booking-list">
     <h3>Wedding Booking List</h3>
-   @foreach($products as $product)
-    <a href="{{ route('wedding.create', ['productId' => $product->id]) }}" class="btn add-new-btn">Add New Booking {{ $product->name }}</a>
-@endforeach
-
 
     <div class="table-container">
         <table>
@@ -30,7 +26,10 @@
                     <th>Groom & Bride</th>
                     <th>Wedding Date</th>
                     <th>Guest Count</th>
-                    <th>Actions</th>
+                    <th>Status</th>
+                    @if(auth()->user()->role !== 'buyer')
+                        <th>Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -40,14 +39,18 @@
                         <td>{{ $booking->groom_name }} & {{ $booking->bride_name }}</td>
                         <td>{{ $booking->wedding_date }}</td>
                         <td>{{ $booking->guest_count }}</td>
-                        <td>
-                            <a href="{{ route('wedding.edit', $booking->id) }}" class="btn edit-btn">
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
-                            <a href="{{ route('wedding.destroy', $booking->id) }}" class="btn delete-btn" onclick="return confirm('Delete this booking?');">
-                                <i class="fa fa-trash"></i> Delete
-                            </a>
-                        </td>
+                        <td>{{ $booking->status ?? 'Belum Ditentukan' }}</td>
+
+                        @if(auth()->user()->role !== 'buyer')
+                            <td>
+                                <a href="{{ route('wedding.edit', $booking->id) }}" class="btn edit-btn">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <a href="{{ route('wedding.destroy', $booking->id) }}" class="btn delete-btn" onclick="return confirm('Delete this booking?');">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

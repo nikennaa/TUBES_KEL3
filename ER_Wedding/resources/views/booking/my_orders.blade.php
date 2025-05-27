@@ -2,7 +2,10 @@
 
 @section('title', 'Wedding Booking List')
 
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin_style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+@endsection
 
 @section('content')
 
@@ -21,27 +24,27 @@
 
     <div class="table-container">
         <table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Groom & Bride</th>
-            <th>Wedding Date</th>
-            <th>Guest Count</th>
-            <th>Status</th> {{-- ✅ Tambahkan status --}}
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($bookings as $booking)
+        <thead>
             <tr>
-                <td>{{ $booking->id }}</td>
-                <td>{{ $booking->groom_name }} & {{ $booking->bride_name }}</td>
-                <td>{{ $booking->wedding_date }}</td>
-                <td>{{ $booking->guest_count }}</td>
-                <td>{{ $booking->status ?? 'Belum Ditentukan' }}</td> {{-- ✅ Tampilkan status --}}
+                <th>ID</th>
+                <th>Groom & Bride</th>
+                <th>Wedding Date</th>
+                <th>Guest Count</th>
+                <th>Status</th> {{-- ✅ Tambahkan status --}}
             </tr>
-        @endforeach
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach($bookings as $booking)
+                <tr>
+                    <td>{{ $booking->id }}</td>
+                    <td>{{ $booking->groom_name }} & {{ $booking->bride_name }}</td>
+                    <td>{{ $booking->wedding_date }}</td>
+                    <td>{{ $booking->guest_count }}</td>
+                    <td>{{ $booking->status ?? 'Belum Ditentukan' }}</td> {{-- ✅ Tampilkan status --}}
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
     </div>
 </section>
