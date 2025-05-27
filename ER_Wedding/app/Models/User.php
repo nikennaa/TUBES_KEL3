@@ -40,14 +40,10 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+];
     public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'user_id'); // pastikan foreign key-nya sesuai

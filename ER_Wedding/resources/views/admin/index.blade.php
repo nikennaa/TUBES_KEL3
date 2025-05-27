@@ -2,6 +2,11 @@
 
 @section('title', 'Produk')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/backup_admin_style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+@endsection
+
 @section('content')
 
 @if (session('success') || session('error'))
@@ -22,26 +27,51 @@
 </section>
 
 <section class="show-products">
-    <div class="box-container">
+   <div class="row">
+            @foreach ($products as $product)
+                <div class="col-md-4 d-flex">
+                    <div class="card w-100 d-flex flex-column shadow-sm">
+                        {{-- Gambar seragam --}}
+                        <div class="img-fixed">
+                            @if($product->image)
+                               <img class="image" src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}"
+                                     class="card-img-top object-cover"
+                                     alt="{{ $product->name }}">
+                            @else
+                                <div class="bg-light text-center py-5">No Image</div>
+                            @endif
+                        </div>
 
-        @forelse($products as $product)
-            <div class="box">
-                <div class="price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
-                <img class="image" src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}">
-                <div class="name">{{ $product->name }}</div>
-                <div class="description">{{ Str::limit($product->description, 100) }}</div>
-                <a href="{{ route('admin.edit', $product) }}" class="option-btn">Update</a>
-                <form action="{{ route('admin.destroy', $product) }}" method="POST" onsubmit="return confirm('Hapus produk ini?');" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="delete-btn">Hapus</button>
-                </form>
-            </div>
-        @empty
-            <p class="empty">Belum ada produk yang ditambahkan!</p>
-        @endforelse
+                        {{-- Konten --}}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text text-muted">{{ Str::limit($product->description, 80) }}</p>
+                            <p class="card-text fw-bold text-pink">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
 
-    </div>
+                            <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="name" value="{{ $product->name }}">
+                                <input type="hidden" name="description" value="{{ $product->description }}">
+                                <input type="hidden" name="price" value="{{ $product->price }}">
+                                <input type="hidden" name="image" value="{{ $product->image }}">
+
+                                <div class="d-grid gap-2">
+                                   <a href="{{ route('admin.edit', $product) }}" class="option-btn">Update</a>
+                                     <form action="{{ route('admin.destroy', $product) }}" method="POST" onsubmit="return confirm('Hapus produk ini?');" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="delete-btn">Hapus</button>
+                                    </form>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
 </section>
 
 @endsection

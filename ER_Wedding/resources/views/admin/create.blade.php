@@ -3,7 +3,7 @@
 @section('title', 'Tambah Produk')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/backup_admin_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin_style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 @endsection
 
@@ -28,9 +28,9 @@
             <img id="preview" src="" alt="Preview Gambar Baru" class="image hidden" style="display: none;">
         </div>
 
-        <div class="button-group">
-            <a href="{{ route('admin.index') }}" class="btn option-btn">Kembali</a>
-            <button type="submit" class="btn">Simpan</button>
+          <div class="button-group">
+              <button type="submit" class="btn">Simpan</button>
+              <a href="{{ route('admin.index') }}" class="btn orange">Kembali</a>
         </div>
     </form>
 </section>
