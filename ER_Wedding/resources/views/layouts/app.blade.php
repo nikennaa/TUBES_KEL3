@@ -34,15 +34,12 @@
             <div id="mainNav" class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
 
-
-
                     {{-- Wishlist button (buyers only) --}}
                     @auth
                         @if(auth()->user()->role === 'buyer')
                             <li class="nav-item">
                                 <a href="{{ route('wishlist.index') }}" class="er-btn-outline er-wishlist-btn">
                                     <i class="fa fa-heart me-1"></i> Wishlist
-
                                 </a>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
@@ -53,13 +50,10 @@
                                 </a>
                             </li>
 
-                             {{-- search icon  --}}
-                    <li class="nav-item d-none d-lg-block">
-                        <a href="#search" class="nav-link"><i class="fas fa-search"></i></a>
-                    </li>
-
-                            {{-- Cart button --}}
-
+                            {{-- search icon --}}
+                            <li class="nav-item d-none d-lg-block">
+                                <a href="#search" class="nav-link"><i class="fas fa-search"></i></a>
+                            </li>
 
                             {{-- Link ke Profil --}}
                             <li class="nav-item">
@@ -80,14 +74,13 @@
                         </li>
                     @else
                         @auth
-                            @if(auth()->user()->role === 'admin')
+                            @if(in_array(auth()->user()->role, ['admin', 'superAdmin']))
                                 <li class="nav-item">
                                     <a class="btn btn-outline-pink me-2" href="{{ route('products.index') }}">Products (Admin)</a>
-
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="btn btn-outline-pink me-2" href="{{ route('superadmin.orders') }}">Order</a>
+                                    <a class="btn btn-outline-pink me-2" href="{{ route('superadmin.orders') }}">Orders Customer</a>
                                 </li>
                             @endif
                         @endauth
@@ -114,7 +107,6 @@
     {{-- ================================================================= --}}
     {{--                              FOOTER                              --}}
     {{-- ================================================================= --}}
-<!-- Pindahkan ini ke app.blade.php -->
     <footer class="bg-dark text-white mt-auto py-3">
         <div class="container text-center">
             <p class="mb-2">&copy; {{ date('Y') }} ER Wedding. All rights reserved.</p>
@@ -125,8 +117,6 @@
             </div>
         </div>
     </footer>
-
-    {{-- {!! NoCaptcha::renderJs() !!} --}}
 
     @stack('scripts')
     @yield('scripts')

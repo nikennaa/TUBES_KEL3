@@ -22,8 +22,12 @@
                     <th>ID</th>
                     <th>Customer</th>
                     <th>Produk</th>
-                    <th>Tanggal</th>
+                    <th>Tanggal Pernikahan</th>
                     <th>Status</th>
+                    <th>Pengantin Pria</th>
+                    <th>Pengantin Wanita</th>
+                    <th>Kontak Telepon</th>
+                    <th>Venue</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -33,9 +37,9 @@
                         <td>{{ $booking->id }}</td>
                         <td>{{ $booking->user->name ?? '-' }}</td>
                         <td>{{ $booking->product->name ?? '-' }}</td>
-                        <td>{{ $booking->wedding_date }}</td>
+                        <td>{{ \Carbon\Carbon::parse($booking->wedding_date)->format('d M Y') }}</td>
                         <td>
-                            <form action="{{ route('superadmin.orders.updateStatus', $booking->id) }}" method="POST">
+                            <form action="{{ route('superadmin.orders.updateStatus', $booking->id) }}" method="POST" style="margin-bottom:4px;">
                                 @csrf
                                 @method('PUT')
                                 <select name="status" onchange="this.form.submit()">
@@ -44,15 +48,18 @@
                                 </select>
                             </form>
                         </td>
+                        <td>{{ $booking->groom_name }}</td>
+                        <td>{{ $booking->bride_name }}</td>
+                        <td>{{ $booking->contact_phone }}</td>
+                        <td>{{ $booking->venue_name }}</td>
                         <td>
-                            <a href="{{ route('superadmin.orders.edit', $booking->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                           
                             <form action="{{ route('superadmin.orders.destroy', $booking->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button onclick="return confirm('Hapus booking ini?')" class="btn btn-sm btn-danger">Hapus</button>
                             </form>
                         </td>
-
                     </tr>
                 @endforeach
             </tbody>

@@ -96,4 +96,3 @@ Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('supe
 });
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-
