@@ -30,7 +30,11 @@
 
     <div class="bg-white p-8 rounded shadow-lg">
         @if($product->image)
-            <img src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-104 object-cover rounded mb-4">
+            <img src="{{ asset('storage/products/' . $product->image) }}"
+     alt="{{ $product->name }}"
+     style="max-width: 400px; width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"
+     class="rounded mb-4 object-cover">
+
         @endif
 
         <div class="flex justify-between items-center mb-4">
