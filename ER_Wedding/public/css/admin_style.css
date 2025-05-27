@@ -857,3 +857,64 @@ form label {
 }
 
  }
+
+ 
+
+ .table-container 
+{
+    overflow-x: auto; /* tetap supaya scroll horizontal kalau perlu */
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 12px; /* kecilkan font */
+    min-width: 700px; /* sesuaikan dengan jumlah kolom */
+}
+
+.table-container th,
+.table-container td {
+    border: 1px solid #ddd;
+    padding: 6px 8px; /* padding diperkecil */
+    text-align: left;
+    vertical-align: middle;
+}
+
+.table-container th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.table-container tbody tr:nth-child(even) {
+    background-color: #fefefe;
+}
+
+.table-container tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+select[name="status"] {
+    padding: 3px 6px;
+    font-size: 12px; /* kecilkan font */
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    min-width: 110px;
+}
+
+.btn-sm {
+    font-size: 12px; /* kecilkan font tombol */
+    padding: 2px 6px;
+}
+
+.btn-sm.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-sm.btn-danger:hover {
+    background-color: #b02a37;
+}
