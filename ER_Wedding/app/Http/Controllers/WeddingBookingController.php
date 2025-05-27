@@ -140,7 +140,7 @@ public function store(Request $request)
 
     public function myOrders()
     {
-        $bookings = WeddingBooking::where('user_id', auth()->id())->get();
+        $bookings = WeddingBooking::where('id', auth()->id())->get();
         $products = Product::all();
 
         return view('booking.my_orders', compact('bookings', 'products'));

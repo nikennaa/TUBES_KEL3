@@ -2,11 +2,6 @@
 
 @section('title', 'Produk')
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/backup_admin_style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-@endsection
-
 @section('content')
 
 @if (session('success') || session('error'))
@@ -32,7 +27,7 @@
         @forelse($products as $product)
             <div class="box">
                 <div class="price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
-                <img class="image" src="{{ asset('pr_img/' . $product->image) }}" alt="{{ $product->name }}">
+                <img class="image" src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}">
                 <div class="name">{{ $product->name }}</div>
                 <div class="description">{{ Str::limit($product->description, 100) }}</div>
                 <a href="{{ route('admin.edit', $product) }}" class="option-btn">Update</a>
