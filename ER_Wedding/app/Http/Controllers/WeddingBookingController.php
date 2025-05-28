@@ -143,10 +143,11 @@ public function store(Request $request)
 
 public function myOrders()
 {
-    $bookings = WeddingBooking::where('id', auth()->id())->get();
-    $products = Product::all(); // ✅ tambahkan ini
+    $bookings = WeddingBooking::where('user_id', auth()->id())->get();
+    $products = Product::all(); // kalau kamu mau tampilkan info produk di tabel juga
 
     return view('booking.index', compact('bookings', 'products'));
 }
+
 
 }
