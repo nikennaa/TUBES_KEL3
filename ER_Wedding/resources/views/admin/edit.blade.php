@@ -36,9 +36,10 @@
         @endif
 
         <div class="button-group">
-            <a href="{{ route('admin.index') }}" class="btn orange">Kembali</a>
-            <button type="submit" class="btn">Update</button>
+            <a href="{{ route('admin.index') }}" class="btn btn-kembali">Kembali</a>
+            <button type="submit" class="btn btn-ubah">Update</button>
         </div>
+
     </form>
 </section>
 

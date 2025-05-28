@@ -1,3 +1,34 @@
+ /* Ukuran teks navbar secara keseluruhan */
+.navbar {
+    font-size: 1.15rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Ukuran teks brand/logo */
+.navbar-brand {
+    font-size: 2rem;
+}
+
+/* Link navbar */
+.navbar-nav .nav-link {
+    font-size: 1.15rem;
+    padding: 0.6rem 1rem;
+}
+
+/* Button di navbar (Login, Register, Logout, dll) */
+.navbar-nav .btn,
+.navbar-nav .er-btn-outline {
+    font-size: 1.5rem;
+    padding: 0.6rem 1.2rem;
+}
+
+/* Responsive toggle icon spacing */
+.navbar-toggler {
+    padding: 0.5rem 0.75rem;
+    font-size: 1.2rem;
+}
+
 .carousel-item img {
     width: 100%;
     height: 350px;

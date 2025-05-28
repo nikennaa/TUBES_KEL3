@@ -349,58 +349,113 @@ section{
     font-size: 1.5rem;
     padding: 0.5rem 0;
 }
+/* Tombol Kembali - warna abu-abu */
+.update-product form .btn-kembali {
+    background-color: #cccccc;
+    color: #333333;
+}
 
-.update-product form{
+.update-product form .btn-kembali:hover {
+    background-color: #b3b3b3;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Tombol Update - warna kuning gold */
+.update-product form .btn-ubah {
+    background-color: #d4af37; /* warna gold */
+    color: #3e2e00; /* coklat tua agar kontras */
+}
+
+.update-product form .btn-ubah:hover {
+    background-color: #b8942f; /* gold sedikit lebih gelap saat hover */
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
+    transform: translateY(-2px);
+}
+
+.update-product form {
     max-width: 50rem;
-    border-radius: .5rem;
+    border-radius: 0.75rem;
     background-color: var(--white);
-    border:var(--border);
-    padding:2rem;
+    border: var(--border);
+    padding: 2.2rem 2.5rem;
     text-align: center;
-    margin:0 auto;
-    box-shadow: var(--box-shadow);
- }
+    margin: 0 auto;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
- .update-product form h3{
+.update-product form h3 {
     font-size: 2.5rem;
     text-transform: uppercase;
-    color:var(--black);
-    margin-bottom: 1rem;
- }
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
 
- .update-product form .box{
+.update-product form .box {
     width: 100%;
-    margin:1rem 0;
+    margin: 1rem 0;
     font-size: 1.8rem;
-    color:var(--black);
-    border-radius: .5rem;
+    color: var(--black);
+    border-radius: 0.6rem;
     background-color: var(--light-bg);
-    padding:1.2rem 1.4rem;
-    border:var(--border);
- }
+    padding: 1.2rem 1.4rem;
+    border: var(--border);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
- .update-product form textarea{
+.update-product form .box:focus {
+    outline: none;
+    border-color: #6b46c1;
+    box-shadow: 0 0 8px rgba(107, 70, 193, 0.3);
+    background-color: #faf7ff;
+}
+
+.update-product form textarea {
     height: 15rem;
     resize: none;
- }
+}
 
 .update-product .image img {
-    border : var(--border);
+    border: var(--border);
     width: 100%;
     max-height: 200px;
     object-fit: cover;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     display: block;
     margin-top: 0.5rem;
+    box-shadow: 0 6px 15px rgba(107, 70, 193, 0.15);
+    transition: transform 0.3s ease;
 }
 
+.update-product .image img:hover {
+    transform: scale(1.03);
+}
 
- .update-product form .button-group{
+.update-product form .button-group {
     display: flex;
-    justify-content: center; /* Membuat tombol berada dalam satu baris */
+    justify-content: center;
     align-items: center;
     gap: 1rem;
     margin-top: 2rem; /* Memberikan jarak antara form dan tombol */
+}
+
+.update-product form .button-group .btn {
+    width: 48%;
+    padding: 1.1rem 0;
+    font-size: 1.8rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+}
 
 
 .placed-orders .box-container{
@@ -855,8 +910,6 @@ form label {
 .btn.add-new:hover {
    background-color: var(--black);
 }
-
- }
 
  .table-container
 {

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 @section('title', 'Produk')
 
 @section('css')
@@ -22,8 +22,9 @@
         <p style="font-size: 1.6rem; color: var(--light-color); max-width: 700px; margin: 0 auto;">
             Selamat datang di halaman manajemen produk. Di sini kamu bisa melihat daftar produk, memperbarui, atau menghapus produk yang ada.
         </p>
-            <a href="{{ route('admin.create') }}" class="btn orange">Tambah Produk</a>
-    </div>
+        <br>
+            <a href="{{ route('admin.create') }}" class="btn pink">Tambah Produk</a>
+     </div>
 </section>
 
 <section class="show-products">
@@ -75,3 +76,4 @@
 </section>
 
 @endsection
+
