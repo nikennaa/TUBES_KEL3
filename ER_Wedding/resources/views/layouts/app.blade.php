@@ -45,7 +45,7 @@
                             <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
                             {{-- My Orders button --}}
                             <li class="nav-item">
-                                <a href="{{ route('my.orders') }}" class="er-btn-outline er-wishlist-btn">
+                                <a href="{{ route('orders.mine') }}" class="er-btn-outline er-wishlist-btn">
                                     <i class="fa fa-clipboard-list me-1"></i> My Orders
                                 </a>
                             </li>
