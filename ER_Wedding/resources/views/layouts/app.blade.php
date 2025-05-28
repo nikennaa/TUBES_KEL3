@@ -2,8 +2,6 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <link rel="stylesheet" href="{{ asset('css/admin_style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@yield('title', 'ER Wedding')</title>
@@ -12,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    {{-- === Custom Theme (already refactored with `er-` prefix) === --}}
+    {{-- === Custom Theme (already refactored with er- prefix) === --}}
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}" />
 
     {{--  Page–level extra style  --}}
@@ -35,8 +33,6 @@
 
             <div id="mainNav" class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
-
 
                     {{-- Wishlist button (buyers only) --}}
                     @auth
@@ -46,16 +42,18 @@
                                     <i class="fa fa-heart me-1"></i> Wishlist
                                 </a>
                             </li>
-
+                            <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
                             {{-- My Orders button --}}
                             <li class="nav-item">
-                                <a href="{{ route('orders.mine') }}" class="er-btn-outline er-wishlist-btn">
+                                <a href="{{ route('my.orders') }}" class="er-btn-outline er-wishlist-btn">
                                     <i class="fa fa-clipboard-list me-1"></i> My Orders
                                 </a>
                             </li>
 
-                            {{-- Cart button --}}
-
+                            {{-- search icon --}}
+                            <li class="nav-item d-none d-lg-block">
+                                <a href="#search" class="nav-link"><i class="fas fa-search"></i></a>
+                            </li>
 
                             {{-- Link ke Profil --}}
                             <li class="nav-item">
@@ -76,7 +74,7 @@
                         </li>
                     @else
                         @auth
-                            @if(auth()->user()->role === 'admin')
+                            @if(in_array(auth()->user()->role, ['admin', 'superAdmin']))
                                 <li class="nav-item">
                                     <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a>
                                 </li>
@@ -84,7 +82,6 @@
                                 <li class="nav-item">
                                     <a class="btn btn-outline-pink me-2" href="{{ route('superadmin.orders') }}">Orders Customer</a>
                                 </li>
-
                             @endif
                         @endauth
 
@@ -99,6 +96,7 @@
             </div>
         </div>
     </nav>
+
 
     {{-- ================================================================= --}}
     {{--                           MAIN CONTENT                            --}}
