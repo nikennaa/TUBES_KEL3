@@ -5,56 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bantuan - E-Wedding Dekorasi</title>
     <link rel="stylesheet" href="{{ asset('css/help.css') }}" />
-    <style>
-        /* Styling tombol dropdown */
-        .dropdown-btn {
-            cursor: pointer;
-            padding: 15px;
-            font-size: 18px;
-            border: none;
-            text-align: left;
-            outline: none;
-            background-color: #f2f2f2;
-            width: 100%;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-        .dropdown-btn:hover {
-            background-color: #ddd;
-        }
-        /* Icon tanda panah */
-        .dropdown-btn::after {
-            content: '\25BC'; /* ▼ */
-            float: right;
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-        .dropdown-btn.active::after {
-            transform: rotate(180deg); /* panah ke atas */
-        }
-
-        /* Container konten dropdown */
-        .dropdown-container {
-            padding: 0 15px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            background-color: #fafafa;
-            border-left: 3px solid #2196F3;
-            margin-bottom: 10px;
-            border-radius: 0 5px 5px 0;
-        }
-        .dropdown-container.open {
-            max-height: 1000px; /* besar cukup untuk isi */
-        }
-
-        /* Styling konten paragraf dan list */
-        .dropdown-container p,
-        .dropdown-container ul {
-            margin: 10px 0;
-        }
-    </style>
 </head>
 <body>
     <a href="{{ url('/') }}" class="btn-back">← Kembali</a>

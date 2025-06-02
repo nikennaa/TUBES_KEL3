@@ -1,34 +1,77 @@
- /* Ukuran teks navbar secara keseluruhan */
+/* === NAVBAR === */
 .navbar {
     font-size: 1.15rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
-/* Ukuran teks brand/logo */
 .navbar-brand {
     font-size: 2rem;
 }
 
-/* Link navbar */
-.navbar-nav .nav-link {
-    font-size: 1.15rem;
-    padding: 0.6rem 1rem;
-}
-
-/* Button di navbar (Login, Register, Logout, dll) */
+/* Semua item navbar termasuk tombol dan link */
+.navbar-nav .nav-link,
 .navbar-nav .btn,
 .navbar-nav .er-btn-outline {
-    font-size: 1.5rem;
-    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
-/* Responsive toggle icon spacing */
+/* Tombol dengan border biru (Wishlist, Orders) */
+.er-btn-outline {
+    background-color: transparent;
+    color: #007bff;
+    border: 1.5px solid #007bff;
+}
+
+.er-btn-outline:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Tombol pink (Logout) */
+.btn-outline-pink {
+    background-color: transparent;
+    color: #e83e8c;
+    border: 1.5px solid #e83e8c;
+}
+
+.btn-outline-pink:hover {
+    background-color: #e83e8c;
+    color: white;
+}
+
+/* Bantuan (diubah jadi tombol abu) */
+.btn-outline-secondary {
+    background-color: transparent;
+    color: #6c757d;
+    border: 1.5px solid #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Ikon tetap sejajar */
+.navbar-nav i {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* Toggle responsive */
 .navbar-toggler {
     padding: 0.5rem 0.75rem;
     font-size: 1.2rem;
 }
 
+/* Komponen lain (carousel, dsb) */
 .carousel-item img {
     width: 100%;
     height: 350px;
@@ -49,17 +92,6 @@
 
 .btn-pink:hover {
     background-color: #d63384;
-    color: white;
-}
-
-.btn-outline-pink {
-    background-color: transparent;
-    color: #e83e8c;
-    border: 2px solid #e83e8c;
-}
-
-.btn-outline-pink:hover {
-    background-color: #e83e8c;
     color: white;
 }
 

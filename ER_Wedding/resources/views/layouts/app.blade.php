@@ -18,7 +18,7 @@
     @yield('css')
 
     {!! NoCaptcha::renderJs() !!}
-    
+
 </head>
 <body>
     {{-- ================================================================= --}}
@@ -43,17 +43,16 @@
                                     <i class="fa fa-heart me-1"></i> Wishlist
                                 </a>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">Bantuan</a></li>
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-secondary" href="{{ route('help') }}">
+                                        <i class="fa fa-question-circle me-1"></i> Bantuan
+                                    </a>
+                                </li>
                             {{-- My Orders button --}}
                             <li class="nav-item">
                                 <a href="{{ route('orders.mine') }}" class="er-btn-outline er-wishlist-btn">
                                     <i class="fa fa-clipboard-list me-1"></i> My Orders
                                 </a>
-                            </li>
-
-                            {{-- search icon --}}
-                            <li class="nav-item d-none d-lg-block">
-                                <a href="#search" class="nav-link"><i class="fas fa-search"></i></a>
                             </li>
 
                             {{-- Link ke Profil --}}

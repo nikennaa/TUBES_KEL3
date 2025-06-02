@@ -39,14 +39,76 @@ a {
 }
 
 /* NAVBAR */
-.navbar-brand {
-    font-weight: 700;
-    font-size: 1.6rem;
+.navbar {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1rem; /* Ukuran dasar */
+    line-height: 1.5;
 }
 
+/* Brand (ER Wedding) */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1rem;  /* Ukuran sama seperti nav-link */
+    padding: 0.4rem 1rem;
+}
+
+/* Link navigasi */
 .nav-link {
     font-weight: 500;
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
 }
+
+/* Tombol Masuk & Daftar */
+.navbar .btn {
+    font-size: 0.9rem;         /* Ukuran font dikecilkan */
+    padding: 0.3rem 0.75rem;   /* Padding atas-bawah diperkecil */
+    line-height: 1.2;
+    font-weight: 500;
+    border-width: 1px;
+    border-radius: 6px;
+}
+
+/* Tombol Masuk, Daftar, dll */
+.navbar .btn {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.75rem;
+    line-height: 1.2;
+    font-weight: 500;
+    border-width: 1px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Tombol-tombol navbar */
+.navbar-btn {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.4rem 1rem;
+    border: 1px solid #e83e8c;
+    border-radius: 6px;
+    background: transparent;
+    color: #e83e8c;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.navbar-btn:hover {
+    background-color: #e83e8c;
+    color: white;
+}
+
+/* Untuk icon-nya agar sejajar */
+.navbar-btn i {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
 
 /* HERO */
 .hero {
