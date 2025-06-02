@@ -57,15 +57,16 @@
                                 <input type="hidden" name="price" value="{{ $product->price }}">
                                 <input type="hidden" name="image" value="{{ $product->image }}">
 
-                                <div class="d-grid gap-2">
-                                   <a href="{{ route('admin.edit', $product) }}" class="option-btn">Update</a>
-                                     <form action="{{ route('admin.destroy', $product) }}" method="POST" onsubmit="return confirm('Hapus produk ini?');" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="delete-btn">Hapus</button>
-                                    </form>
+                            <div class="button-group">
+                                <a href="{{ route('admin.edit', $product) }}" class="btn btn-update">Update</a>
 
-                                </div>
+                                <form action="{{ route('admin.destroy', $product) }}" method="POST" onsubmit="return confirm('Hapus produk ini?');" style="margin: 0; padding: 0;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-hapus">Hapus</button>
+                                </form>
+                            </div>
+
                             </form>
 
                         </div>

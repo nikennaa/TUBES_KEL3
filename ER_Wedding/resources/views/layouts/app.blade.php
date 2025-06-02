@@ -73,18 +73,25 @@
                             <a class="btn btn-outline-pink" href="{{ route('register') }}">Daftar</a>
                         </li>
                     @else
-                        @auth
+                                            @auth
+                            {{-- Tampilkan tombol Orders Customer untuk admin & superAdmin --}}
                             @if(in_array(auth()->user()->role, ['admin', 'superAdmin']))
                                 <li class="nav-item">
-                                    <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">Products (Admin)</a>
+                                    <a class="btn btn-outline-pink me-2" href="{{ route('superadmin.orders') }}">
+                                        Orders Customer
+                                    </a>
                                 </li>
+                            @endif
 
+                            {{-- Tampilkan tombol Products (Admin) hanya untuk admin --}}
+                            @if(auth()->user()->role === 'admin')
                                 <li class="nav-item">
-                                    <a class="btn btn-outline-pink me-2" href="{{ route('superadmin.orders') }}">Orders Customer</a>
+                                    <a class="btn btn-outline-pink me-2" href="{{ route('admin.index') }}">
+                                        Products (Admin)
+                                    </a>
                                 </li>
                             @endif
                         @endauth
-
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                 @csrf

@@ -17,7 +17,8 @@ class ProductController extends Controller
     public function index()
     {
     // Ambil 3 produk terbaru berdasarkan tanggal dibuat
-    $products = Product::orderBy('created_at', 'desc')->take(3)->get();
+    $products = Product::orderBy('created_at', 'desc')->get();
+
 
     return view('admin.index', compact('products'));
     }
@@ -85,23 +86,24 @@ class ProductController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $productData = $request->only('name', 'description', 'price', 'image');
+        $productData = $request->only('name', 'description', 'price');
 
         if ($request->hasFile('image')) {
+            // Hapus gambar lama kalau ada
             if ($product->image) {
                 Storage::delete('public/' . $product->image);
             }
 
             $imagePath = $request->file('image')->store('products', 'public');
-            $productData['image'] = $imagePath;
+            $productData['image'] = basename($imagePath); // <- ini penting!
         }
 
         $product->update($productData);
 
         session()->flash('success', 'Produk berhasil diperbarui!');
-
         return redirect()->route('admin.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

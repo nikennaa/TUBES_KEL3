@@ -21,17 +21,19 @@
 
         <input type="text" name="price" class="box" required placeholder="Masukkan Harga Produk" value="{{ old('price') }}">
 
-        <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required onchange="previewImage(event)">
+        <<input type="file" name="image" accept="image/*" class="box" onchange="previewImage(event)">
 
-        <div class="image mt-4">
-            <p id="imageMessage" style="font-size: 1.4rem; color: var(--light-color);">Tidak Ada Gambar</p>
-            <img id="preview" src="" alt="Preview Gambar Baru" class="image hidden" style="display: none;">
+       <div class="image mt-4">
+            <p style="font-size: 1.4rem; color: var(--light-color);">Gambar Yang akan muncul: </p>
+            <img id="preview" src="" alt="Preview Gambar Baru" class="preview-image hidden" style="display: none;">
         </div>
+
 
           <div class="button-group">
-              <button type="submit" class="btn">Simpan</button>
-              <a href="{{ route('admin.index') }}" class="btn orange">Kembali</a>
+            <a href="{{ route('admin.index') }}" class="btn btn-kembali">Kembali</a>
+            <button type="submit" class="btn btn-simpan">Simpan</button>
         </div>
+
     </form>
 </section>
 
