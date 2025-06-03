@@ -28,53 +28,123 @@
 </section>
 
 <section class="show-products">
-   <div class="row">
-            @foreach ($products as $product)
-                <div class="col-md-4 d-flex">
-                    <div class="card w-100 d-flex flex-column shadow-sm">
-                        {{-- Gambar seragam --}}
-                        <div class="img-fixed">
-                            @if($product->image)
-                               <img class="image" src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}"
-                                     class="card-img-top object-cover"
-                                     alt="{{ $product->name }}">
-                            @else
-                                <div class="bg-light text-center py-5">No Image</div>
-                            @endif
-                        </div>
+    <div class="box-container">
 
-                        {{-- Konten --}}
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ $product->name }}</h5>
-                            <p class="card-text text-muted">{{ Str::limit($product->description, 80) }}</p>
-                            <p class="card-text fw-bold text-pink">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
+        @foreach($products as $product)
+            <div class="box">
+                <img class="image" src="{{ asset('pr_img/' . $product->image) }}" alt="{{ $product->name }}">
+                <div class="name">{{ $product->name }}</div>
+                <div class="description">{{ Str::limit($product->description, 100) }}</div>
+                <div class="price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
 
-                            <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="hidden" name="name" value="{{ $product->name }}">
-                                <input type="hidden" name="description" value="{{ $product->description }}">
-                                <input type="hidden" name="price" value="{{ $product->price }}">
-                                <input type="hidden" name="image" value="{{ $product->image }}">
+                <div class="button-group">
+                    <a href="{{ route('admin.edit', $product) }}" class="option-btn">Update</a>
 
-                            <div class="button-group">
-                                <a href="{{ route('admin.edit', $product) }}" class="btn btn-update">Update</a>
-
-                                <form action="{{ route('admin.destroy', $product) }}" method="POST" onsubmit="return confirm('Hapus produk ini?');" style="margin: 0; padding: 0;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-hapus">Hapus</button>
-                                </form>
-                            </div>
-
-                            </form>
-
-                        </div>
-                    </div>
+                    <form action="{{ route('admin.destroy', $product) }}" method="POST" onsubmit="return confirm('Hapus produk ini?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="delete-btn">Hapus</button>
+                    </form>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
+
+        @if($products->isEmpty())
+            <p class="empty">Belum ada produk yang ditambahkan!</p>
+        @endif
+
+    </div>
 </section>
+
+<style>
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+
+.box {
+    width: 250px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    transition: 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    min-height: 480px;
+}
+.box:hover {
+    transform: scale(1.03);
+}
+
+.image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 12px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.option-btn,
+.delete-btn {
+    padding: 8px 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.option-btn {
+    background-color: #3498db;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+}
+
+.empty {
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+}
+</style>
+
 
 @endsection
 
