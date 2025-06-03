@@ -89,8 +89,8 @@
                           placeholder="Tulis komentarmu…" required></textarea>
 
                 <div class="d-flex justify-content-between">
-                    <button type="reset" class="btn btn-success">Cancel</button>
-                    <button class="btn btn-danger">Kirim</button>
+                    <button class="btn btn-success">Kirim</button>
+                    <button type="reset" class="btn btn-danger">Cancel</button>
                 </div>
             </form>
         </div>

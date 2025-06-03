@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\WeddingBookingController; // ← tambahkan controller WeddingBookingController
-use App\Http\Controllers\profileController;
+use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SuperAdminController;
