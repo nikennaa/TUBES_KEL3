@@ -260,14 +260,14 @@
             <div class="card-box">
                 <div class="card-header">
                     <div>
-                        <h4>Total Customers</h4>
+                        <h4>Total Akun</h4>
                         <p>Last 30 days</p>
                     </div>
                     <span class="icon">👥</span>
                 </div>
                 <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
                 <a href="{{ url('/superadmin/fitur') }}" class="btn btn-primary">
-                    Lihat Total Customers
+                    Lihat Total Akun
                 </a>
             </div>
             @endif
