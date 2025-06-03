@@ -32,7 +32,7 @@
 
         @foreach($products as $product)
             <div class="box">
-                <img class="image" src="{{ asset('pr_img/' . $product->image) }}" alt="{{ $product->name }}">
+                <img class="image" src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}">
                 <div class="name">{{ $product->name }}</div>
                 <div class="description">{{ Str::limit($product->description, 100) }}</div>
                 <div class="price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
@@ -131,7 +131,7 @@
 }
 
 .option-btn {
-    background-color: #3498db;
+    background-color: palevioletred;
 }
 
 .delete-btn {
