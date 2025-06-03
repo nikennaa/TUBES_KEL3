@@ -241,7 +241,7 @@
 @auth
     @if((auth()->user()->role === 'superAdmin' || auth()->user()->role === 'admin') && isset($dashboardStats))
     <section class="admin-dashboard">
-        <h2>📊 Super Admin Overview</h2>
+        <h2>📊 Dashboard Overview</h2>
         <div class="dashboard-cards">
 
             <div class="card-box">
@@ -276,6 +276,30 @@
     </section>
     @endif
 @endauth
+
+<style>
+
+.admin-dashboard {
+    flex-grow: 1; /* Membuat konten mengisi ruang yang tersedia */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Pastikan body setinggi layar */
+}
+
+main {
+    flex: 1 0 auto;    /* Mengisi ruang vertikal yang tersisa */
+    width: 100%;       /* Pastikan lebarnya full-width */
+    background-color: var(--br-light);
+    color: var(--br-navy);
+}
+
+
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

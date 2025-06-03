@@ -68,3 +68,10 @@
 </section>
 
 @endsection
+
+<style>
+main {
+    min-height: 90vh; /* Memastikan elemen utama setinggi layar */
+}
+
+</style>

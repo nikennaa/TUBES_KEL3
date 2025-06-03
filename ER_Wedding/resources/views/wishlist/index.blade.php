@@ -54,4 +54,19 @@
     object-fit: cover;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    background-color: var(--br-light);
+    color: var(--br-navy);
+    flex: 1 0 auto;    /* Ambil ruang vertikal yang tersisa, tdk perlu min-height */
+    width: 100%;       /* Pastikan lebarnya full-width */
+}
+
 </style>

@@ -40,15 +40,27 @@
    background-color: var(--pink);
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Pastikan body setinggi layar */
+    background: var(--light-bg);
+}
+
+main {
+    flex: 1 0 auto;    /* Mengisi ruang vertikal yang tersisa */
+    width: 100%;       /* Pastikan lebarnya full-width */
+    background-color: var(--br-light);
+    color: var(--br-navy);
+}
+
 html{
    font-size: 62.5%;
    overflow-x: hidden;
    scroll-behavior: smooth;
    scroll-padding-top: 6.5rem;
-}
-
-body{
-   background: var(--light-bg);
 }
 
 section{
@@ -63,46 +75,7 @@ section{
    font-size: 4rem;
 }
 
-.message{
-   position: sticky;
-   top:0;
-   margin:0 auto;
-   max-width: 1200px;
-   background-color: var(--light-bg);
-   display: flex;
-   align-items: center;
-   padding:2rem;
-   gap:1.5rem;
-   z-index: 10000;
-   justify-content: space-between;
-}
 
-.message span{
-   color:var(--black);
-   font-size: 2rem;
-}
-
-.message i{
-   font-size: 2.5rem;
-   color:var(--red);
-   cursor: pointer;
-}
-
-.message i:hover{
-   transform: rotate(90deg);
-}
-
-.empty{
-   padding:1.5rem;
-   font-size: 2rem;
-   color:var(--red);
-   border:var(--border);
-   box-shadow: var(--box-shadow);
-   text-align: center;
-   background-color: var(--white);
-   border-radius: .5rem;
-   text-transform: capitalize;
-}
 
 @keyframes fadeIn{
    0%{
