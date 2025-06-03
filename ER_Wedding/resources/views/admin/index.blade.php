@@ -49,25 +49,20 @@
                             <p class="card-text text-muted">{{ Str::limit($product->description, 80) }}</p>
                             <p class="card-text fw-bold text-pink">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
 
-                            <form action="{{ route('wishlist.add') }}" method="POST" class="mt-auto">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="hidden" name="name" value="{{ $product->name }}">
-                                <input type="hidden" name="description" value="{{ $product->description }}">
-                                <input type="hidden" name="price" value="{{ $product->price }}">
-                                <input type="hidden" name="image" value="{{ $product->image }}">
+
 
                             <div class="button-group">
                                 <a href="{{ route('admin.edit', $product) }}" class="btn btn-update">Update</a>
 
-                                <form action="{{ route('admin.destroy', $product) }}" method="POST" onsubmit="return confirm('Hapus produk ini?');" style="margin: 0; padding: 0;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-hapus">Hapus</button>
-                                </form>
-                            </div>
 
+                            <form action="{{ route('admin.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Hapus produk ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-hapus">Hapus</button>
                             </form>
+
+
+                            </div>
 
                         </div>
                     </div>
