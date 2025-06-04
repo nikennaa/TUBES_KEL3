@@ -17,13 +17,13 @@ body {
 
 .btn-outline-pink {
     border: 2px solid var(--pink);
-    color: var(--pink);
+    color: blue;
     border-radius: 6px;
     background: transparent;
 }
 
 .btn-outline-pink:hover {
-    background: var(--pink);
+    background: maroon;
     color: #fff;
 }
 

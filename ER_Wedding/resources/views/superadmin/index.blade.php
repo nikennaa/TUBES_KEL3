@@ -60,6 +60,15 @@
             background-color: #a61e56;
         }
 
+        .button {
+            padding: 8px 12px;
+            background-color: #d63384;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: #eee;
+        }
+
     </style>
 </head>
 <body>
@@ -86,11 +95,12 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->role }}</td>
                     <td>
+
                         <a href="{{ route('superadmin.edit', $user->id) }}" class="button">Edit</a>
                         <form action="{{ route('superadmin.destroy', $user->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="button" style="background-color:#dc3545;">Hapus</button>
+                            <button type="submit" class="button" >Hapus</button>
                         </form>
                     </td>
                 </tr>
