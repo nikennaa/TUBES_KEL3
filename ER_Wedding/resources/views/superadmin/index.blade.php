@@ -70,6 +70,7 @@
 
         .button:hover {
             background-color: #a61e56;
+            border-color: #eee;
         }
 
     </style>
@@ -98,6 +99,7 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->role }}</td>
                     <td>
+
                         <a href="{{ route('superadmin.edit', $user->id) }}" class="button">Edit</a>
                         <form action="{{ route('superadmin.destroy', $user->id) }}" method="POST" style="display:inline;">
                             @csrf

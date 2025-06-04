@@ -41,16 +41,18 @@
             </div>
 
             <!-- Tanggal dan Waktu Pernikahan -->
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="wedding_date">Wedding Date</label>
-                    <input type="date" class="box" name="wedding_date" required placeholder="Wedding Date">
-                </div>
-                <div class="form-group">
-                    <label for="wedding_time">Wedding Time</label>
-                    <input type="time" class="box" name="wedding_time" required placeholder="Wedding Time">
-                </div>
-            </div>
+<div class="form-row">
+    <div class="form-group">
+        <label for="wedding_date">Wedding Date</label>
+        <input type="date" class="box" name="wedding_date" id="wedding_date" required placeholder="yyyy-mm-dd">
+    </div>
+
+    <div class="form-group">
+        <label for="wedding_time">Wedding Time</label>
+        <input type="time" class="box" name="wedding_time" id="wedding_time" required placeholder="Wedding Time">
+    </div>
+</div>
+
 
             <!-- Lokasi Pernikahan -->
             <div class="form-row">
@@ -108,6 +110,14 @@
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn">
             </div>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#wedding_date", {
+        dateFormat: "Y-m-d", // Format yyyy-mm-dd
+    });
+</script>
         </form>
     </section>
 @endsection
