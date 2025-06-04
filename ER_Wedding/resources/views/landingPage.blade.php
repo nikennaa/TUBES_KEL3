@@ -1,5 +1,4 @@
-{{-- contoh: resources/views/landing/index.blade.php --}}
-@extends('layouts.app')
+    @extends('layouts.app')
 
 @section('title', 'Home')
 
