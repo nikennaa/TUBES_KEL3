@@ -45,7 +45,7 @@
     <div class="form-group">
         <label for="wedding_date">Wedding Date</label>
         <input type="date" class="box" name="wedding_date" id="wedding_date" required placeholder="yyyy-mm-dd">
-    </div>
+</div>
 
     <div class="form-group">
         <label for="wedding_time">Wedding Time</label>
