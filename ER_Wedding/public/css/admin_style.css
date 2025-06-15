@@ -287,13 +287,13 @@ section{
 
 /* Tombol Update - warna kuning gold */
 .add-products form .btn-simpan {
-    background-color: #d4af37; /* warna gold */
+    background-color: var(--pink); /* warna gold */
     color: #3e2e00; /* coklat tua agar kontras */
 }
 
 .add-products form .btn-simpan:hover {
-    background-color: #b8942f; /* gold sedikit lebih gelap saat hover */
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
+    background-color: pink; /* gold sedikit lebih gelap saat hover */
+    box-shadow: palevioletred;
     transform: translateY(-2px);
 }
 

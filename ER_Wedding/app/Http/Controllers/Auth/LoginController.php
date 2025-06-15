@@ -21,7 +21,6 @@ class LoginController extends Controller
     public function login(Request $request)
 
     {
-        // Validasi input termasuk reCAPTCHA
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
