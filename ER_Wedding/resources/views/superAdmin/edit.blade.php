@@ -13,7 +13,8 @@
         <label>Role:</label>
         <select name="role" class="form-control">
             <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+             <option value="buyer" {{ $user->role == 'buyer' ? 'selected' : '' }}>Buyer</option>
+             <option value="superAdmin" {{ $user->role == 'superAdmin' ? 'selected' : '' }}>Super Admin</option>
         </select>
         <br>
         <button type="submit" class="btn btn-success">Update</button>

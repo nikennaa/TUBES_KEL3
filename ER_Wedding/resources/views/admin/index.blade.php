@@ -32,7 +32,7 @@
         @forelse($products as $product)
             <div class="box">
                 <div class="price">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
-                <img class="image" src="{{ asset('pr_img/' . $product->image) }}" alt="{{ $product->name }}">
+                <img class="image" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
                 <div class="name">{{ $product->name }}</div>
                 <div class="description">{{ Str::limit($product->description, 100) }}</div>
                 <a href="{{ route('admin.edit', $product) }}" class="option-btn">Update</a>

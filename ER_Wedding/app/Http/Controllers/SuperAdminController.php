@@ -12,10 +12,33 @@ use App\Models\Produk;    // pastikan model Produk ada di App\Models
 class SuperAdminController extends Controller
 {
     public function index()
-    {
-        $users = User::all();
-        return view('superadmin.index', compact('users'));
-    }
+{
+    $users = User::all();
+
+    $totalCustomers = User::where('role', 'buyer')->count();
+
+    $totalAdmins = User::whereIn('role', ['admin', 'superAdmin'])->count();
+
+    return view('superadmin.index', compact(
+        'users',
+        'totalCustomers',
+        'totalAdmins'
+    ));
+}
+
+public function listCustomers()
+{
+    $users = User::where('role', 'buyer')->get();
+
+    return view('superadmin.index', compact('users'));
+}
+
+public function listAdmins()
+{
+    $users = User::whereIn('role', ['admin', 'superAdmin'])->get();
+
+    return view('superadmin.index', compact('users'));
+}
 
     public function create()
     {
@@ -104,12 +127,15 @@ public function landingPage()
 {
     $dashboardStats = [
         'numberOfProducts' => Produk::count(),
+
         'numberOfUsers' => User::count(),
-        'numberOfAdmins' => User::where('role', 'admin')->count(),
+
+        'numberOfCustomers' => User::where('role', 'buyer')->count(),
+
+        'numberOfAdmins' => User::whereIn('role', ['admin', 'superAdmin'])->count(),
     ];
 
     return view('landingpage', compact('dashboardStats'));
 }
-
 
 }

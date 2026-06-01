@@ -229,54 +229,82 @@
 
 
 @auth
+
 @if((auth()->user()->role === 'superAdmin' || auth()->user()->role === 'admin') && isset($dashboardStats))
+
 <section class="admin-dashboard">
     <h2>📊 Super Admin Overview</h2>
+
     <div class="dashboard-cards">
 
-
+        {{-- CARD TOTAL PRODUCT --}}
         <div class="card-box">
             <div class="card-header">
                 <div>
                     <h4>Total Product</h4>
                     <p>Last 30 days</p>
                 </div>
+
                 <span class="icon">🛒</span>
             </div>
-            <div class="card-value">{{ $dashboardStats['numberOfProducts'] }}</div>
-            <a href="{{ route('products.index') }}" class="btn btn-primary">Lihat Semua Produk</a>
+
+            <div class="card-value">
+                {{ $dashboardStats['numberOfProducts'] }}
+            </div>
+
+            <a href="{{ route('products.index') }}" class="btn btn-primary">
+                Lihat Semua Produk
+            </a>
         </div>
 
+        {{-- KHUSUS SUPER ADMIN --}}
+        @if(auth()->user()->role === 'superAdmin')
+
+        {{-- TOTAL CUSTOMERS --}}
         <div class="card-box">
             <div class="card-header">
                 <div>
                     <h4>Total Customers</h4>
                     <p>Last 30 days</p>
                 </div>
+
                 <span class="icon">👥</span>
             </div>
-            <div class="card-value">{{ $dashboardStats['numberOfUsers'] }}</div>
-            <a href="{{ url('/superadmin/fitur') }}" class="btn btn-primary">
-    Lihat Total Customers
-</a>
+
+            <div class="card-value">
+                {{ $dashboardStats['numberOfCustomers'] }}
+            </div>
+
+            <a href="{{ route('superadmin.fitur.customers') }}" class="btn btn-primary">
+                Lihat Total Customers
+            </a>
         </div>
 
-          <div class="card-box">
+        {{-- TOTAL ADMINS --}}
+        <div class="card-box">
             <div class="card-header">
                 <div>
                     <h4>Total Admins</h4>
                     <p>Last 30 days</p>
                 </div>
+
                 <span class="icon">👥</span>
             </div>
-            <div class="card-value">{{ $dashboardStats['numberOfAdmins'] }}</div>
-            <a href="{{ url('/superadmin/fitur') }}" class="btn btn-primary">
-    Lihat Total Admin
-</a>
 
+            <div class="card-value">
+                {{ $dashboardStats['numberOfAdmins'] }}
+            </div>
+
+            <a href="{{ route('superadmin.fitur.admins') }}" class="btn btn-primary">
+                Lihat Total Admin
+            </a>
         </div>
+
+        @endif
+
     </div>
 </section>
+
 @endif
 @endauth
 

@@ -14,7 +14,7 @@
         <label>Role:</label>
         <select name="role" class="form-control">
             <option value="admin">Admin</option>
-            <option value="user">User</option>
+            <option value="user">Buyer</option>
         </select>
         <br>
         <button type="submit" class="btn btn-primary">Simpan</button>

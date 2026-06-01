@@ -14,6 +14,9 @@ class WeddingBookingController extends Controller
     $products = Product::all();
     $bookings = WeddingBooking::with('product')->get(); // include relasi product jika ada
 
+    dd($bookings);
+
+
     return view('booking.index', compact('products', 'bookings'));
 }
 
@@ -143,7 +146,7 @@ public function store(Request $request)
 
 public function myOrders()
 {
-    $bookings = WeddingBooking::where('id', auth()->id())->get();
+    $bookings = WeddingBooking::where('user_id', auth()->id())->get();
     $products = Product::all(); // ✅ tambahkan ini
 
     return view('booking.index', compact('bookings', 'products'));

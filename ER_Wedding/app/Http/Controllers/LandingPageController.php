@@ -29,7 +29,7 @@ class LandingPageController extends Controller
             // 'totalCompletes' => Order::where('payment_status', 'completed')->sum('total_price'),
             // 'numberOfOrders' => Order::count(),
             'numberOfProducts' => Product::count(),
-            'numberOfUsers' => User::where('role', 'buyer')->count(),
+            'numberOfCustomers' => User::where('role', 'buyer')->count(),
             'numberOfAdmins' => User::where('role', 'admin')->count(),
             'numberOfAccounts' => User::count(),
             // 'numberOfMessages' => Message::count(),

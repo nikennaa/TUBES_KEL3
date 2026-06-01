@@ -50,7 +50,7 @@ class ProductController extends Controller
             'name' => $validated['name'],
             'description'      => $validated['description'],
             'price'       => $validated['price'],
-            'image'       => isset($imagePath) ? basename($imagePath) : null,
+            'image' => $imagePath ?? null,
         ]);
 
         session()->flash('success', 'Produk berhasil dibuat!');
