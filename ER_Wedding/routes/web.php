@@ -90,11 +90,7 @@ Route::get('/all-products', [ProductController::class, 'allProducts'])->name('pr
 // Route untuk menampilkan produk yang sudah di order
 Route::get('/my-orders', [WeddingBookingController::class, 'myOrders'])->name('orders.mine');
 
-Route::middleware(['auth', 'role:superAdmin'])->prefix('superadmin')->name('superadmin.')->group(function () {
-    Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('index');
-    Route::get('/orders', [SuperAdminController::class, 'orders'])->name('orders');
-    // route lain...
-});
+// Orders routes are defined in the admin,superAdmin group below.
 
 
 
