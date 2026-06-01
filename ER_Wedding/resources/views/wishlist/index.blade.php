@@ -41,6 +41,7 @@
 @endsection
 
 
+@section('css')
 <style>
     .img-container {
     width: 100%;
